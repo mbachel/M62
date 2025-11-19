@@ -1,87 +1,24 @@
-# Welcome to React Router!
+# ITIS 5166 - Backend Application Development
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## Final Project - Matthew Bachelder - M62
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Final project website built with React, MongoDB, Python, JWT, and others. The site is a culmination of everything I have learned this semester in this course.
 
-## Features
+### Table of Contents
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- [What this project is](#what-this-project-is)
+- [Project Overview](#project-overview)
+- [Project Details](#project-details)
+- [Project Structure](#project-structure)
 
-## Getting Started
+### What this project is
 
-### Installation
+This repository contains the source for Matthew Bachelder's final project for ITIS 5166, Backend Application Development.
 
-Install the dependencies:
+### Project Overview
 
-```bash
-npm install
-```
+This project is built using MongoDB as the database, Python for the backend, React for the frontend, is about "Recent Innovations in Generative AI." This project also uses JWT for authentication, a charting library, and NGINX or Apache to serve frontend.
 
-### Development
+### Project Details
 
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+### Project Structure

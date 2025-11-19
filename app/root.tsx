@@ -5,10 +5,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  Link,
+  useLocation,
+  useNavigate,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import ThemeToggle from "./components/ThemeToggle";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,6 +28,15 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const showNav = location.pathname !== "/";
+
+  function handleSignOut() {
+    localStorage.removeItem("m62_auth");
+    navigate("/");
+  }
+
   return (
     <html lang="en">
       <head>
@@ -33,7 +46,30 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        {showNav && (
+          <header className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-black/80 border-b border-gray-200 dark:border-gray-800 backdrop-blur z-30">
+            <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+              <nav className="flex items-center gap-3">
+                <Link to="/dashboard" className="text-sm font-medium text-gray-700 hover:underline">
+                  Dashboard
+                </Link>
+                <Link to="/summary" className="text-sm font-medium text-gray-700 hover:underline">
+                  Summary
+                </Link>
+                <Link to="/reports" className="text-sm font-medium text-gray-700 hover:underline">
+                  Reports
+                </Link>
+              </nav>
+              <div className="flex items-center gap-3">
+                <ThemeToggle />
+                <button onClick={handleSignOut} className="text-sm text-gray-700 hover:underline">
+                  Sign out
+                </button>
+              </div>
+            </div>
+          </header>
+        )}
+        <main className="pt-16">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
