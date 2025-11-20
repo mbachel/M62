@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -17,34 +17,42 @@ export default function Login() {
     e.preventDefault();
     setError(null);
     // Very simple client-side "auth" for demo purposes
-    if (!email || !password) {
-      setError("Please provide email and password.");
+    const u = username.trim();
+    const p = password;
+
+    if (!u || !p) {
+      setError("Please provide username and password.");
       return;
     }
 
-    // Fake authentication success: store a flag and navigate
-    localStorage.setItem("m62_auth", "true");
-    navigate("/dashboard");
+    // Only allow the specific demo credentials
+    if (u === "matthew" && p === "matthew") {
+      localStorage.setItem("m62_auth", "true");
+      navigate("/dashboard");
+      return;
+    }
+
+    setError("Invalid username or password.");
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto max-w-md">
-      <div className="flex justify-end mb-4">
+    <main className="flex flex-col pt-16 p-4 container mx-auto max-w-md">
+      <div className="flex items-center justify-between pb-2">
+        <h1 className="text-3xl font-semibold">Login</h1>
         <ThemeToggle />
       </div>
-      <h1 className="text-2xl font-semibold mb-4">Login</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm">Email</label>
+          <label className="block text-lg">Username&nbsp;<span className="text-red-600">*</span></label>
           <input
             className="w-full border rounded p-2"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
-          <label className="block text-sm">Password</label>
+          <label className="block text-lg">Password&nbsp;<span className="text-red-600">*</span></label>
           <input
             className="w-full border rounded p-2"
             type="password"
@@ -54,10 +62,10 @@ export default function Login() {
         </div>
         {error && <p className="text-red-600">{error}</p>}
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded" type="submit">
+          <button className="px-4 py-2 bg-(--accent) text-lg rounded hover:cursor-pointer" type="submit">
             Sign in
           </button>
-          <Link to="/login" className="text-sm text-gray-600 hover:underline">
+          <Link to="/" className="text-lg hover:underline">
             Reset
           </Link>
         </div>
