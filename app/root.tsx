@@ -47,31 +47,38 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {showNav && (
-          <header className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-black/80 border-b border-gray-200 dark:border-gray-800 backdrop-blur z-30">
+          <header>
             <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
-              <nav className="flex items-center gap-3">
-                <Link to="/dashboard" className="text-sm font-medium text-gray-700 hover:underline">
+              <nav className="flex items-center border-2 rounded-full overflow-hidden my-2">
+                <Link to="/dashboard" className="px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full">
                   Dashboard
                 </Link>
-                <Link to="/summary" className="text-sm font-medium text-gray-700 hover:underline">
+                <Link to="/summary" className="px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
                   Summary
                 </Link>
-                <Link to="/reports" className="text-sm font-medium text-gray-700 hover:underline">
+                <Link to="/reports" className="px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
                   Reports
                 </Link>
               </nav>
               <div className="flex items-center gap-3">
-                <ThemeToggle />
-                <button onClick={handleSignOut} className="text-sm text-gray-700 hover:underline">
+                <button onClick={handleSignOut} className="rounded transition p-1 text-lg hover:underline hover:bg-(--accent) hover:cursor-pointer">
                   Sign out
                 </button>
+                <ThemeToggle />
               </div>
             </div>
           </header>
         )}
-        <main className="pt-16">{children}</main>
+        <main className="pt-4">
+          <div key={location.pathname} className="page-container">
+            {children}
+          </div>
+        </main>
         <ScrollRestoration />
         <Scripts />
+        <footer className="bg-(--navbar) h-16 flex items-center justify-center text-lg">
+          &copy; 2025 Matthew Bachelder
+        </footer>
       </body>
     </html>
   );
