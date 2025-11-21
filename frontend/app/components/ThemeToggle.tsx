@@ -38,12 +38,12 @@ export default function ThemeToggle({ className }: { className?: string }) {
     // if theme is dark, show FiSun (click => light)
     if (theme === "dark") {
         return (
-            <FiSun size={45} className={"flex items-center hover:cursor-pointer hover:bg-(--accent) rounded-full p-1 transition" + (className ? " " + className : "") } onClick={() => setTheme("light")} />
+            <FiSun size={45} className={"flex items-center text-(--navbar-text) bg-(--navbar) hover:cursor-pointer hover:bg-(--accent) rounded-full p-1 transition" + (className ? " " + className : "") } onClick={() => setTheme("light")} />
         );
     }
 
     // if theme is light, show FiMoon (click => dark)
     return (
-        <FiMoon size={45} className={"flex items-center hover:cursor-pointer hover:bg-(--accent) rounded-full p-1 transition" + (className ? " " + className : "") } onClick={() => setTheme("dark")} />
+        <FiMoon size={45} className={"flex items-center text-(--navbar-text) hover:cursor-pointer hover:bg-(--accent) rounded-full p-1 transition" + (className ? " " + className : "") } onClick={() => setTheme("dark")} />
     );
 }

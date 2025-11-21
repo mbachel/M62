@@ -49,19 +49,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {showNav && (
           <header>
             <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
-              <nav className="flex items-center border-2 rounded-full overflow-hidden my-2">
-                <Link to="/dashboard" className="px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full">
+              <nav className="flex items-center border-2 rounded-full overflow-hidden my-2 dark:border-(--navbar-text)">
+                <Link to="/dashboard" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full">
                   Dashboard
                 </Link>
-                <Link to="/summary" className="px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
+                <Link to="/summary" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
                   Summary
                 </Link>
-                <Link to="/reports" className="px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
+                <Link to="/reports" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
                   Reports
                 </Link>
               </nav>
               <div className="flex items-center gap-3">
-                <button onClick={handleSignOut} className="rounded transition p-1 text-lg hover:underline hover:bg-(--accent) hover:cursor-pointer">
+                <button onClick={handleSignOut} className="rounded transition p-1 text-lg button px-2 py-1">
                   Sign out
                 </button>
                 <ThemeToggle />
@@ -76,9 +76,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </main>
         <ScrollRestoration />
         <Scripts />
-        <footer className="bg-(--navbar) h-16 flex items-center justify-center text-lg">
+        {showNav && (
+        <footer className="bg-(--navbar) text-(--navbar-text) h-16 flex items-center justify-center text-lg">
           &copy; 2025 Matthew Bachelder
         </footer>
+      )}
       </body>
     </html>
   );

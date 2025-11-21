@@ -1,19 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
   --transition-duration: 200ms;
   --bg: #f4f6f3;
+  --bg2: #dfe5dc;
   --navbar: #d4e2d4;
+  --navbar-text: #4e5456;
   --text: #344638;
-  --accent: #7ea091;
+  --accent: #ADC2B9;
+  --reset: oklch(63.7% 0.237 25.331);
+  --link: oklch(54.6% 0.245 262.881);
 }
 
 .dark {
-  --bg: #1a1a1a;
-  --navbar: #2a2d2e;
+  --bg: #36393e;
+  --bg2: #282b30;
+  --navbar: #A598AE;
+  --navbar-text: #333333;
   --text: #e6e6fa;
-  --accent: #c5aa6a;
+  --accent: #9885AD;
+  --reset: oklch(44.4% 0.177 26.899);
+  --link: oklch(80.9% 0.105 251.813);
+}
+
+#reset {
+  background-color: var(--reset);
+  color: white;
+}
+
+.button {
+  background-color: var(--navbar);
+  color: var(--navbar-text);
+  
+}
+
+.button:hover {
+  background-color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 body {
@@ -22,9 +46,6 @@ body {
   color: var(--text);
   transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
 }
-
-a { color: var(--accent); }
-button { color: var(--text); }
 
 header, nav {
   background-color: var(--navbar);
