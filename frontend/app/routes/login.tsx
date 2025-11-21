@@ -37,8 +37,9 @@ export default function Login() {
 
   return (
     <main className="flex flex-col pt-16 p-4 container mx-auto max-w-md">
+      <h2 className="flex items-center justify-center text-4xl font-semibold mb-24">Welcome to Project M62</h2>
       <div className="flex items-center justify-between pb-2">
-        <h1 className="text-3xl font-semibold">Login</h1>
+        <h2 className="text-3xl font-semibold">Login</h2>
         <ThemeToggle />
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -62,10 +63,10 @@ export default function Login() {
         </div>
         {error && <p className="text-red-600">{error}</p>}
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-(--accent) text-lg rounded hover:cursor-pointer" type="submit">
+          <button className="px-4 py-2 bg-(--accent) text-(--navbar-text) text-lg rounded hover:cursor-pointer" type="submit">
             Sign in
           </button>
-          <Link to="/" className="text-lg hover:underline">
+          <Link to="/" className="px-4 py-2 ml-4 text-lg rounded hover:underline" id="reset">
             Reset
           </Link>
         </div>
