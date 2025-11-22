@@ -1,6 +1,7 @@
 import type { Route } from "./+types/reports";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
+import { isAuthenticated } from "../utils/auth";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Reports - App" }];
@@ -10,8 +11,7 @@ export default function Reports() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const auth = localStorage.getItem("m62_auth");
-    if (auth !== "true") {
+    if (!isAuthenticated()) {
       navigate("/", { replace: true });
     }
   }, [navigate]);

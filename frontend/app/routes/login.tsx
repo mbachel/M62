@@ -1,6 +1,6 @@
 import type { Route } from "./+types/login";
 import { Link, useNavigate } from "react-router";
-import { type FormEvent, useState } from "react";
+import { useState } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 
 export function meta({}: Route.MetaArgs) {
@@ -13,26 +13,27 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    // Very simple client-side "auth" for demo purposes
-    const u = username.trim();
-    const p = password;
+    
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
 
-    if (!u || !p) {
-      setError("Please provide username and password.");
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setError(data.detail || "Login failed.");
       return;
     }
 
-    // Only allow the specific demo credentials
-    if (u === "matthew" && p === "matthew") {
-      localStorage.setItem("m62_auth", "true");
-      navigate("/dashboard");
-      return;
-    }
-
-    setError("Invalid username or password.");
+    const { access_token } = await res.json();
+    localStorage.setItem("m62_token", access_token);
+    navigate("/dashboard");
   }
 
   return (

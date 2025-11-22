@@ -2,6 +2,15 @@
 .env
 /frontend/.vite/
 /frontend/node_modules/
+# Python cache and build artifacts (ignore anywhere in repo)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.python-version
+.pytest_cache/
+
+# keep the existing backend-specific ignores as examples (redundant)
 /backend/__pycache__/
 /backend/config/__pycache__/
 

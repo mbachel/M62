@@ -1,7 +1,7 @@
 import type { Route } from "./+types/dashboard";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
-import { FaLinkedin } from 'react-icons/fa';
+import { isAuthenticated, signOut } from "../utils/auth";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Dashboard - App" }];
@@ -11,14 +11,13 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const auth = localStorage.getItem("m62_auth");
-    if (auth !== "true") {
+    if (!isAuthenticated()) {
       navigate("/", { replace: true });
     }
   }, [navigate]);
 
   function handleSignOut() {
-    localStorage.removeItem("m62_auth");
+    signOut();
     navigate("/");
   }
 
@@ -91,7 +90,7 @@ export default function Dashboard() {
         <h2 className="text-3xl font-semibold mb-4">Quick Links</h2>
         <ul className="pl-4 flex space-x-6 text-lg">
           <li>
-            <Link to="/summary" className=" hover:underline">
+            <Link to="/summary" className="link">
               View Summary
             </Link>
           </li>
