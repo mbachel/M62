@@ -8,6 +8,7 @@
   --navbar-text: #4e5456;
   --text: #344638;
   --accent: #ADC2B9;
+  --accent-hover: #9BB3A8;
   --reset: oklch(63.7% 0.237 25.331);
   --link: oklch(54.6% 0.245 262.881);
 }
@@ -19,6 +20,7 @@
   --navbar-text: #333333;
   --text: #e6e6fa;
   --accent: #9885AD;
+  --accent-hover: #877799;
   --reset: oklch(44.4% 0.177 26.899);
   --link: oklch(80.9% 0.105 251.813);
 }

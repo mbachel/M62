@@ -50,13 +50,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <header>
             <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
               <nav className="flex items-center border-2 rounded-full overflow-hidden my-2 dark:border-(--navbar-text)">
-                <Link to="/dashboard" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full">
+                <Link to="/dashboard" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full">
                   Dashboard
                 </Link>
-                <Link to="/summary" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
+                <Link to="/summary" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
                   Summary
                 </Link>
-                <Link to="/reports" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
+                <Link to="/reports" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
                   Reports
                 </Link>
               </nav>
