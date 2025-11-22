@@ -33,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const showNav = location.pathname !== "/";
 
   function handleSignOut() {
-    localStorage.removeItem("m62_auth");
+    localStorage.removeItem("m62_token");
     navigate("/");
   }
 

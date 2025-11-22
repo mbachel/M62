@@ -17,8 +17,17 @@ export default function TimeSeriesLollipopChart() {
   const [popupData, setPopupData] = useState<ModelRelease | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/model_releases")
-      .then(res => res.json() as Promise<ModelRelease[]>)
+    const token = localStorage.getItem("m62_token") || "";
+    fetch("http://localhost:3000/api/model_releases", {
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined
+    })
+      .then(res => {
+        if (res.status === 401) {
+          localStorage.removeItem("m62_token");
+          throw new Error("Unauthorized");
+        }
+        return res.json();
+      })
       .then((data: ModelRelease[]) => {
         data.forEach(d => {
           d.date = new Date(d.release_date);
@@ -26,12 +35,13 @@ export default function TimeSeriesLollipopChart() {
 
         const developers = Array.from(new Set(data.map(d => d.developer)));
 
-        const margin = { top: 70, right: 50, bottom: 120, left: 180 };
+        const margin = { top: 70, right: 50, bottom: 140, left: 180 };
         const width = 1200 - margin.left - margin.right;
         const rowHeight = 45;
         const height = developers.length * rowHeight;
+        const extraH = 40; // Extra height for axis labels
         const svgW = width + margin.left + margin.right;
-        const svgH = height + margin.top + margin.bottom;
+        const svgH = height + margin.top + margin.bottom + extraH;
 
         const svg = d3.select(ref.current)
           .attr("width", svgW)
@@ -39,21 +49,23 @@ export default function TimeSeriesLollipopChart() {
 
         svg.selectAll("*").remove();
 
-        // Legend
+        // Dynamic legend layout (compact)
         const legendG = svg.append("g")
           .attr("transform", `translate(${margin.left},${margin.top - 55})`);
+        let legendX = 0;
         developers.forEach((dev, i) => {
           legendG.append("rect")
-            .attr("x", i * 190)
+            .attr("x", legendX)
             .attr("width", 20)
             .attr("height", 20)
             .attr("fill", d3.schemeCategory10[i % 10]);
           legendG.append("text")
-            .attr("x", i * 190 + 25)
+            .attr("x", legendX + 25)
             .attr("y", 15)
             .text(dev)
             .attr("font-size", "16px")
-            .attr("fill", "#fff");
+            .attr("fill", "var(--text)");
+          legendX += 25 + dev.length * 9 + 18;
         });
 
         const x = d3.scaleTime()
@@ -65,17 +77,21 @@ export default function TimeSeriesLollipopChart() {
           .range([margin.top, margin.top + height])
           .padding(0.7);
 
-        // Helper for collision: offset dots that would overlap
-        const offsetForOverlap = (curr: ModelRelease, all: ModelRelease[], developers: string[], x: d3.ScaleTime<number, number>, y: d3.ScalePoint<string>) => {
-          // Find all models with same developer and near-same date
+        // Stronger offset for overlapping points
+        const offsetForOverlap = (
+          curr: ModelRelease,
+          all: ModelRelease[],
+          developers: string[],
+          x: d3.ScaleTime<number, number>,
+          y: d3.ScalePoint<string>
+        ) => {
           const samePts = all.filter(d =>
             d.developer === curr.developer &&
-            Math.abs(x(d.date as Date) - x(curr.date as Date)) < 18
+            Math.abs(x(d.date as Date) - x(curr.date as Date)) < 22
           );
           if (samePts.length > 1) {
-            // Offset horizontally by index from center
             const idx = samePts.findIndex(d => d._id === curr._id);
-            return x(curr.date as Date) + (idx - (samePts.length-1)/2) * 13;
+            return x(curr.date as Date) + (idx - (samePts.length - 1) / 2) * 20;
           }
           return x(curr.date as Date);
         };
@@ -87,21 +103,24 @@ export default function TimeSeriesLollipopChart() {
           .attr("transform", "rotate(-35)")
           .attr("text-anchor", "end")
           .attr("font-size", "15px")
-          .attr("dx", "-5px");
+          .attr("dx", "-5px")
+          .attr("fill", "var(--text)");
 
+        // Release Date axis label
         svg.append("text")
           .attr("x", svgW / 2)
-          .attr("y", svgH - 45)
+          .attr("y", svgH - 15)
           .attr("text-anchor", "middle")
           .attr("font-size", "19px")
-          .attr("fill", "#ccc")
+          .attr("fill", "var(--text)")
           .text("Release Date");
 
         svg.append("g")
           .attr("transform", `translate(${margin.left - 20},0)`)
           .call(d3.axisLeft(y))
           .selectAll("text")
-          .attr("font-size", "17px");
+          .attr("font-size", "17px")
+          .attr("fill", "var(--text)");
 
         svg.append("text")
           .attr("transform", "rotate(-90)")
@@ -109,7 +128,7 @@ export default function TimeSeriesLollipopChart() {
           .attr("y", 55)
           .attr("text-anchor", "middle")
           .attr("font-size", "19px")
-          .attr("fill", "#ccc")
+          .attr("fill", "var(--text)")
           .text("Developer");
 
         svg.selectAll(".stem")
@@ -155,9 +174,11 @@ export default function TimeSeriesLollipopChart() {
           setPopupData(null);
           setPopupPos(null);
         });
+      })
+      .catch(err => {
+        console.error(err);
       });
 
-    // Clean up window click event
     return () => {
       d3.select(window).on("click", null);
     };
@@ -167,12 +188,13 @@ export default function TimeSeriesLollipopChart() {
     <>
       <svg ref={ref}></svg>
       {popupData && popupPos && (
-        <div className="bg-(--bg2) text-(--text)"
+        <div
           style={{
             position: "fixed",
             left: popupPos.x + 18,
             top: popupPos.y - 12,
-
+            background: "var(--bg2)",
+            color: "var(--text)",
             padding: "14px 18px",
             borderRadius: "8px",
             boxShadow: "0 0 6px #2227",
@@ -183,25 +205,17 @@ export default function TimeSeriesLollipopChart() {
           aria-live="polite"
           role="dialog"
         >
-          <div className="mb-4">
+          <div style={{ marginBottom: 6 }}>
             <strong>Model Name: </strong><br />{popupData.model_name}
           </div>
-          <div className="mb-4">
-            <strong>Release Date:</strong><br/>
+          <div style={{ marginBottom: 6 }}>
+            <strong>Release Date:</strong><br />
             {d3.timeFormat("%B %d, %Y")(popupData.date as Date)}
           </div>
-          <div className="mb-2">
-            <strong>Key Innovation:</strong><br/>
+          <div style={{ marginBottom: 2 }}>
+            <strong>Key Innovation:</strong><br />
             {popupData.key_innovation}
           </div>
-          {/* <button className="button rounded px-2 py-1 text-lg"
-            onClick={() => {
-              setSelectedId(null);
-              setPopupData(null);
-              setPopupPos(null);
-            }}
-            aria-label={"Close model info dialog"}
-          >Close</button> */}
         </div>
       )}
     </>

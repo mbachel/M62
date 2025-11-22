@@ -1,6 +1,7 @@
 import type { Route } from "./+types/summary";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
+import { isAuthenticated } from "../utils/auth";
 import ARChart from "../components/ARChart";
 
 export function meta({}: Route.MetaArgs) {
@@ -11,8 +12,7 @@ export default function Summary() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const auth = localStorage.getItem("m62_auth");
-    if (auth !== "true") {
+    if (!isAuthenticated()) {
       navigate("/", { replace: true });
     }
   }, [navigate]);
