@@ -1,0 +1,10 @@
+.DS_Store
+.env
+/frontend/.vite/
+/frontend/node_modules/
+/backend/__pycache__/
+/backend/config/__pycache__/
+
+# React Router
+/frontend/.react-router/
+/frontend/build/
