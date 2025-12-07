@@ -30,7 +30,7 @@
     "key_innovation": "Enhanced reasoning capabilities, API access"
   },
   {
-    "model_name": "Grok 5",
+    "model_name": "Grok 4",
     "developer": "xAI",
     "release_date": "2025-07-09",
     "key_innovation": "Real-time X integration, 256K context window"
