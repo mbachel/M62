@@ -9,6 +9,7 @@ __pycache__/
 *.pyd
 .python-version
 .pytest_cache/
+/frontend/vite.config.ts
 
 # keep the existing backend-specific ignores as examples (redundant)
 /backend/__pycache__/
@@ -17,3 +18,5 @@ __pycache__/
 # React Router
 /frontend/.react-router/
 /frontend/build/
+
+/frontend/vite.config.ts
