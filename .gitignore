@@ -18,5 +18,3 @@ __pycache__/
 # React Router
 /frontend/.react-router/
 /frontend/build/
-
-/frontend/vite.config.ts
