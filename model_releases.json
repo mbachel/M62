@@ -1,0 +1,74 @@
+[
+  {
+    "model_name": "Gemini 3 Pro",
+    "developer": "Google DeepMind",
+    "release_date": "2025-11-18",
+    "key_innovation": "State-of-the-art reasoning, generative UI, agentic capabilities"
+  },
+  {
+    "model_name": "Claude Sonnet 4.5",
+    "developer": "Anthropic",
+    "release_date": "2025-09-30",
+    "key_innovation": "Best coding model, Agent SDK integration"
+  },
+  {
+    "model_name": "Qwen 3 Max",
+    "developer": "Alibaba",
+    "release_date": "2025-09-05",
+    "key_innovation": "Flagship Chinese language model"
+  },
+  {
+    "model_name": "GPT-5",
+    "developer": "OpenAI",
+    "release_date": "2025-08-07",
+    "key_innovation": "400K context window, advanced reasoning model"
+  },
+  {
+    "model_name": "Claude 4.1",
+    "developer": "Anthropic",
+    "release_date": "2025-08-05",
+    "key_innovation": "Enhanced reasoning capabilities, API access"
+  },
+  {
+    "model_name": "Grok 5",
+    "developer": "xAI",
+    "release_date": "2025-07-09",
+    "key_innovation": "Real-time X integration, 256K context window"
+  },
+  {
+    "model_name": "Qwen 3",
+    "developer": "Alibaba",
+    "release_date": "2025-04-29",
+    "key_innovation": "235B parameters, open source"
+  },
+  {
+    "model_name": "GPT-o4-mini",
+    "developer": "OpenAI",
+    "release_date": "2025-04-16",
+    "key_innovation": "200K context window, cost-efficient reasoning"
+  },
+  {
+    "model_name": "GPT-o3",
+    "developer": "OpenAI",
+    "release_date": "2025-04-16",
+    "key_innovation": "200K context window, deliberate reasoning model"
+  },
+  {
+    "model_name": "GPT-4.1",
+    "developer": "OpenAI",
+    "release_date": "2025-04-14",
+    "key_innovation": "1M+ context window, May 2024 knowledge cutoff"
+  },
+  {
+    "model_name": "Llama 4 Scout",
+    "developer": "Meta AI",
+    "release_date": "2025-04-05",
+    "key_innovation": "10M context window, 405B parameters"
+  },
+  {
+    "model_name": "Gemini 2.5 Pro",
+    "developer": "Google DeepMind",
+    "release_date": "2025-03-25",
+    "key_innovation": "1M token context (2M coming soon)"
+  }
+]
