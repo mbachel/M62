@@ -18,7 +18,7 @@ export default function TimeSeriesLollipopChart() {
 
   useEffect(() => {
     const token = localStorage.getItem("m62_token") || "";
-    fetch("http://localhost:3000/api/model_releases", {
+    fetch("/api/model_releases", {
       headers: token ? { Authorization: `Bearer ${token}` } : undefined
     })
       .then(res => {
