@@ -35,13 +35,12 @@ export default function TimeSeriesLollipopChart() {
 
         const developers = Array.from(new Set(data.map(d => d.developer)));
 
-        const margin = { top: 70, right: 50, bottom: 140, left: 180 };
+        const margin = { top: 70, right: 50, bottom: 150, left: 180 };
         const width = 1200 - margin.left - margin.right;
         const rowHeight = 45;
         const height = developers.length * rowHeight;
-        const extraH = 40; // Extra height for axis labels
         const svgW = width + margin.left + margin.right;
-        const svgH = height + margin.top + margin.bottom + extraH;
+        const svgH = height + margin.top + margin.bottom;
 
         const svg = d3.select(ref.current)
           .attr("width", svgW)
