@@ -61,9 +61,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </Link>
               </nav>
               <div className="flex items-center gap-3">
-                <button onClick={handleSignOut} className="rounded transition p-1 text-lg button px-2 py-1">
+                <Link to="/" onClick={handleSignOut} className="text-lg button rounded transition px-4 py-2">
                   Sign out
-                </button>
+                </Link>
                 <ThemeToggle />
               </div>
             </div>
