@@ -110,9 +110,11 @@ export default function Dashboard() {
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Tech Stack</h3>
           <ul className="mb-2 text-lg list-disc list-inside">
             <li className="pl-4">Frontend - React Router</li>
+            <li className="pl-4">Frontend Served By - NGINX</li>
             <li className="pl-4">Styling - Tailwind CSS</li>
             <li className="pl-4">Authentication - JWT (JOSE)</li>
             <li className="pl-4">Backend - FastAPI (Python)</li>
+            <li className="pl-4">Backend Served By - Uvicorn</li>
             <li className="pl-4">Database - MongoDB</li>
             <li className="pl-4">Hosting - DigitalOcean</li>
             <li className="pl-4">AI Assistance - GPT-5 mini for code, Perplexity Pro/Max for implementation</li>
