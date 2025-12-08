@@ -103,7 +103,7 @@ async def get_model_releases(current_user: str = Depends(get_current_user)):
 
 #endpoint to check health of the API and MongoDB connection
 @app.get("/api/health")
-async def health():
+async def health(current_user: str = Depends(get_current_user)):
     #try to ping MongoDB server
     try:
         await client.admin.command("ping")
