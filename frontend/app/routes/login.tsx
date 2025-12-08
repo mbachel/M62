@@ -67,9 +67,6 @@ export default function Login() {
           <button className="px-4 py-2 bg-(--accent) text-(--navbar-text) text-lg rounded hover:cursor-pointer" type="submit">
             Sign in
           </button>
-          <Link to="/" className="px-4 py-2 ml-4 text-lg rounded hover:underline" id="reset">
-            Reset
-          </Link>
         </div>
       </form>
     </main>
