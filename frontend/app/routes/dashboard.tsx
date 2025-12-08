@@ -37,29 +37,29 @@ export default function Dashboard() {
         {/*References*/}
         <div className="text-lg max-w-7xl" id="references">
           <h3 className="pl-2 mb-2 text-2xl font-semibold">References</h3>
-          <ul className="list-disc list-inside">
+          <ul className="list-disc list-inside space-y-2">
+            <li className="pl-4">
+              AI Model & API Providers Analysis | Artificial Analysis. (n.d.). <br />
+              <Link to="https://artificialanalysis.ai/?models=gpt-5%2Cgpt-5-1%2Cgemini-3-pro%2Cgemini-2-5-pro%2Cclaude-opus-4-5-thinking%2Cclaude-4-5-sonnet-thinking%2Cgrok-4%2Ckimi-k2-thinking%2Cqwen3-max" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+                https://artificialanalysis.ai/
+              </Link>
+            </li>
+            <li className="pl-4">
+              Bick, A., Blandin, A., & Deming, D. (2025, November 19). The state of generative AI adoption in 2025. St. Louis Fed. <br />
+              <Link to="https://www.stlouisfed.org/on-the-economy/2025/nov/state-generative-ai-adoption-2025" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+                https://www.stlouisfed.org/on-the-economy/2025/nov/state-generative-ai-adoption-2025
+              </Link>
+            </li>
+            <li className="pl-4">
+              Cardillo, A. (2025, October 17). Best 44 Large Language Models (LLMs) in 2025. Exploding Topics. <br />
+              <Link to="https://explodingtopics.com/blog/list-of-llms" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+                https://explodingtopics.com/blog/list-of-llms
+              </Link>
+            </li>
             <li className="pl-4">
               CNovet, J., & Vanian, J. (2025, April 30). Satya Nadella says as much as 30% of Microsoft code is written by AI. CNBC. <br />
-              <Link to="https://www.cnbc.com/2025/04/29/satya-nadella-says-as-much-as-30percent-of-microsoft-code-is-written-by-ai.html" target="_blank" rel="noopener noreferrer" className="text-(--link) underline">
+              <Link to="https://www.cnbc.com/2025/04/29/satya-nadella-says-as-much-as-30percent-of-microsoft-code-is-written-by-ai.html" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
                 https://www.cnbc.com/2025/04/29/satya-nadella-says-as-much-as-30percent-of-microsoft-code-is-written-by-ai.html
-              </Link>
-            </li>
-            <li className="pl-4">
-              Exploding Topics:&nbsp;
-              <Link to="https://explodingtopics.com/blog/list-of-llms" target="_blank" rel="noopener noreferrer" className="text-(--link) underline">
-                Best 44 Large Language Models (LLMs) in 2025 (Exploding Topics, October 17th, 2025)
-              </Link>
-            </li>
-            <li className="pl-4">
-              Federal Reserve Bank of St. Louis:&nbsp;
-              <Link to="https://www.stlouisfed.org/on-the-economy/2025/nov/state-generative-ai-adoption-2025" target="_blank" rel="noopener noreferrer" className="text-(--link) underline transition">
-                The State of Generative AI Adoption in 2025 (St. Louis Fed, November 13th, 2025)
-              </Link>
-            </li>
-            <li className="pl-4">
-              Vellum:&nbsp;
-              <Link to="https://www.vellum.ai/llm-leaderboard?utm_source=perplexity&utm_medium=geo" target="_blank" rel="noopener noreferrer" className="text-(--link) underline">
-                LLM Leaderboard (Vellum, 2025)
               </Link>
             </li>
           </ul>
