@@ -58,7 +58,7 @@ export default function Reports() {
           </Link>
         </p>
       </section>
-      <QuickLinks firstPage="dashboard" secondPage="reports" />
+      <QuickLinks firstPage="dashboard" secondPage="summary" />
     </main>
   );
 }
