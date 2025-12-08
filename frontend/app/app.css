@@ -36,6 +36,12 @@
   
 }
 
+.link {
+  color: var(--link);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .button:hover {
   background-color: var(--accent);
   cursor: pointer;
