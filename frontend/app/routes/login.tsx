@@ -1,5 +1,5 @@
 import type { Route } from "./+types/login";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 
