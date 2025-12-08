@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { isAuthenticated } from "../utils/auth";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Reports - App" }];
+  return [{ title: "Reports - M62" }];
 }
 
 export default function Reports() {

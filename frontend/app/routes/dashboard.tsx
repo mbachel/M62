@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { isAuthenticated, signOut } from "../utils/auth";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Dashboard - App" }];
+  return [{ title: "Dashboard - M62" }];
 }
 
 export default function Dashboard() {

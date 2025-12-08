@@ -4,7 +4,7 @@ import { useState } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Login - App" }];
+  return [{ title: "Login - M62" }];
 }
 
 export default function Login() {

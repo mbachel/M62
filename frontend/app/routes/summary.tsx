@@ -5,7 +5,7 @@ import { isAuthenticated } from "../utils/auth";
 import ARChart from "../components/ARChart";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Summary - App" }];
+  return [{ title: "Summary - M62" }];
 }
 
 export default function Summary() {
