@@ -2,6 +2,7 @@ import type { Route } from "./+types/dashboard";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
 import { isAuthenticated, handleSignOut } from "../utils/auth";
+import QuickLinks from "~/components/QuickLinks";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Dashboard - M62" }];
@@ -116,27 +117,7 @@ export default function Dashboard() {
           </ul>
         </div>
       </section>
-      <hr className="border-(--accent) border-2"/>
-      <section className="py-6" id="quick-links">
-        <h2 className="text-3xl font-semibold mb-4">Quick Links</h2>
-        <ul className="pl-4 flex space-x-6 text-lg items-center">
-          <li>
-            <Link to="/summary" className="button rounded transition px-4 py-2">
-              View Summary Page
-            </Link>
-          </li>
-          <li>
-            <Link to="/reports" className="button rounded transition px-4 py-2">
-              View Reports page
-            </Link>
-          </li>
-          <li>
-            <Link to="/" onClick={handleSignOut} className="button rounded transition px-4 py-2">
-              Sign out
-            </Link>
-          </li>
-        </ul>
-      </section>
+      <QuickLinks firstPage="summary" secondPage="reports" />
     </main>
   );
 }
