@@ -46,6 +46,13 @@ export default function Summary() {
           To summarize, it is important to stay on top of both major and minor AI releases, as
           the field is rapidly evolving and new advancements are being made constantly. This project
           aims to assist users in staying up-to-date with the latest innovations in AI technology.
+          Source of this data:
+          <br />
+          <br />
+          Cardillo, A. (2025, October 17). Best 44 Large Language Models (LLMs) in 2025. Exploding Topics. <br />
+          <Link to="https://explodingtopics.com/blog/list-of-llms" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+            https://explodingtopics.com/blog/list-of-llms
+          </Link>
         </p>
       </section>
       <QuickLinks firstPage="dashboard" secondPage="reports" />
