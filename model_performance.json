@@ -1,65 +1,74 @@
 [
   {
     "model": "Gemini 3 Pro",
-    "gpqa_diamond_reasoning": 91.9,
-    "aime_2025_math": 100.0,
-    "swe_bench_coding": 76.2,
-    "humanitys_last_exam": 45.8
-  },
-  {
-    "model": "GPT 5.1",
-    "gpqa_diamond_reasoning": 88.1,
-    "aime_2025_math": null,
-    "swe_bench_coding": 76.3,
-    "humanitys_last_exam": null
-  },
-  {
-    "model": "Grok 4",
-    "gpqa_diamond_reasoning": 87.5,
-    "aime_2025_math": null,
-    "swe_bench_coding": 75.0,
-    "humanitys_last_exam": 25.4
-  },
-  {
-    "model": "GPT-5",
-    "gpqa_diamond_reasoning": 87.3,
-    "aime_2025_math": null,
-    "swe_bench_coding": 74.9,
-    "humanitys_last_exam": 35.2
+    "developer": "Google",
+    "humanitys_last_exam": 37.2,
+    "gpqa_diamond_reasoning": 91.0,
+    "livecodebench_coding": 92,
+    "aime_2025_math": 96
   },
   {
     "model": "Gemini 2.5 Pro",
-    "gpqa_diamond_reasoning": 86.4,
-    "aime_2025_math": null,
-    "swe_bench_coding": null,
-    "humanitys_last_exam": 21.6
+    "developer": "Google",
+    "humanitys_last_exam": 21.1,
+    "gpqa_diamond_reasoning": 84.0,
+    "livecodebench_coding": 80,
+    "aime_2025_math": 88
   },
   {
-    "model": "Kimi K2 Thinking",
-    "gpqa_diamond_reasoning": null,
-    "aime_2025_math": 99.1,
-    "swe_bench_coding": null,
-    "humanitys_last_exam": 44.9
+    "model": "GPT-5.1",
+    "developer": "OpenAI",
+    "humanitys_last_exam": 26.5,
+    "gpqa_diamond_reasoning": 87.0,
+    "livecodebench_coding": 87.0,
+    "aime_2025_math": 94.0
   },
   {
-    "model": "GPT oss 20b",
-    "gpqa_diamond_reasoning": null,
-    "aime_2025_math": 98.7,
-    "swe_bench_coding": null,
-    "humanitys_last_exam": null
+    "model": "GPT-4",
+    "developer": "OpenAI",
+    "humanitys_last_exam": 4.6,
+    "gpqa_diamond_reasoning": 67.0,
+    "livecodebench_coding": 46.0,
+    "aime_2025_math": 35.0
   },
   {
-    "model": "OpenAI o3",
-    "gpqa_diamond_reasoning": null,
-    "aime_2025_math": 98.4,
-    "swe_bench_coding": null,
-    "humanitys_last_exam": null
+    "model": "Claude Opus 4.5",
+    "developer": "Anthropic",
+    "humanitys_last_exam": 28.4,
+    "gpqa_diamond_reasoning": 87.0,
+    "livecodebench_coding": 87.0,
+    "aime_2025_math": 91.0
   },
   {
     "model": "Claude Sonnet 4.5",
-    "gpqa_diamond_reasoning": null,
-    "aime_2025_math": null,
-    "swe_bench_coding": 82.0,
-    "humanitys_last_exam": null
+    "developer": "Anthropic",
+    "humanitys_last_exam": 17.3,
+    "gpqa_diamond_reasoning": 83.0,
+    "livecodebench_coding": 71.0,
+    "aime_2025_math": 88.0
+  },
+  {
+    "model": "Grok 4",
+    "developer": "xAI",
+    "humanitys_last_exam": 23.9,
+    "gpqa_diamond_reasoning": 88.0,
+    "livecodebench_coding": 82.0,
+    "aime_2025_math": 93.0
+  },
+  {
+    "model": "Qwen 3 Max",
+    "developer": "Alibaba (Qwen)",
+    "humanitys_last_exam": 11.1,
+    "gpqa_diamond_reasoning": 76.0,
+    "livecodebench_coding": 77.0,
+    "aime_2025_math": 81.0
+  },
+  {
+    "model": "Kimi K2 Thinking",
+    "developer": "Moonshot AI",
+    "humanitys_last_exam": 22.3,
+    "gpqa_diamond_reasoning": 84.0,
+    "livecodebench_coding": 85.0,
+    "aime_2025_math": 95.0
   }
 ]
