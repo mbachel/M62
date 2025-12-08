@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 // Minimal JWT helpers for client-side auth checks
 export function getToken(): string | null {
   try {
@@ -61,4 +63,10 @@ export function signOut(): void {
   } catch (e) {
     // ignore
   }
+}
+
+export function handleSignOut(): void {
+  const navigate = useNavigate();
+  signOut();
+  navigate("/");
 }

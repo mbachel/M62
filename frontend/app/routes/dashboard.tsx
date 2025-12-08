@@ -1,7 +1,7 @@
 import type { Route } from "./+types/dashboard";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
-import { isAuthenticated, signOut } from "../utils/auth";
+import { isAuthenticated, handleSignOut } from "../utils/auth";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Dashboard - M62" }];
@@ -15,11 +15,6 @@ export default function Dashboard() {
       navigate("/", { replace: true });
     }
   }, [navigate]);
-
-  function handleSignOut() {
-    signOut();
-    navigate("/");
-  }
 
   return (
     <main className="pt-6 px-6 container mx-auto">
@@ -75,9 +70,9 @@ export default function Dashboard() {
             Artificial Intelligence has been one of the biggest topics in technology today. 
             In particular, development and deployment of Generative AI has seen rapid growth.
             Companies such as Anthropic, Google, and OpenAI have been leading the way in this 
-            AI renaissance. Recently, these companies have released powerful models, Claude 4.5,
+            AI renaissance. Recently, these companies have recently released powerful models, Claude 4.5,
             Gemini 3 Pro, and GPT-5 respectively. Along with these industry giants, smaller companies
-            such as Alibaba and X (formerly Twitter) have also released their own powerful models, 
+            such as Alibaba and X (formerly Twitter) have also recently released their own powerful models, 
             Qwen 3 Max and Grok 4, respectively. 
             <br />
             <br />
