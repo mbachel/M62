@@ -101,7 +101,7 @@ export default function Dashboard() {
             to those who are logged in, with authentication via JWT. The front end is made up
             of React routes, utilizing multiple React components, with React Router to navigate.
             MongoDB is used to host the data, while Python is leveraged to serve the data to the
-            frontend.To make this project a reality, I utilized the specific tech stack listed below.
+            frontend. To make this project a reality, I utilized the specific tech stack listed below.
           </p>
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Tech Stack</h3>
           <ul className="mb-2 text-lg list-disc list-inside">
