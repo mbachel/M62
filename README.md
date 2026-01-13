@@ -25,16 +25,15 @@ This project is built using MongoDB as the database, Python for the backend, Rea
 
 #### Technology Stack
 
-*   **Frontend**: Built with **React 19** and **React Router v7**. Styling is handled by **Tailwind CSS**, and data visualizations are powered by **D3.js**.
-*   **Backend**: A **Python FastAPI** application serving as the API layer.
-*   **Database**: Uses **MongoDB** for data persistence, interacting asynchronously via the **Motor** driver.
-*   **Authentication**: Implements secure user authentication using **OAuth2** and **JSON Web Tokens (JWT)** via the `python-jose` library.
+*   **Frontend**: Built with React and React Router. Styling is handled by Tailwind CSS, and data visualizations are powered by D3.js.
+*   **Backend**: A Python FastAPI application serving as the API layer.
+*   **Database**: Uses MongoDB for data storage.
+*   **Authentication**: Implements secure user authentication using OAuth2 and JSON Web Tokens (JWT) via the `python-jose` library.
 
 #### Features & Data
 
 The application provides insights into the rapidly evolving landscape of Generative AI:
 
-*   **Adoption Metrics**: Visualizes workforce and general public adoption trends over time.
 *   **Model Performance**: Compares top-tier models (e.g., Gemini 3 Pro, Claude Sonnet 4.5) across benchmarks like *Humanity's Last Exam*, *GPQA Diamond*, and *LiveCodeBench*.
 *   **Release Timeline**: Tracks key model releases and their specific technological innovations.
 
