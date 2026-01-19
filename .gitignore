@@ -1,5 +1,8 @@
 .DS_Store
 .env
+.env.local
+.env.production
+.env.*.local
 /frontend/.vite/
 /frontend/node_modules/
 # Python cache and build artifacts (ignore anywhere in repo)
@@ -10,8 +13,16 @@ __pycache__/
 .python-version
 .pytest_cache/
 /frontend/vite.config.ts
-
-# keep the existing backend-specific ignores as examples (redundant)
+/frontend/certs/
+*.key
+*.crt
+*.pem
+docker-compose.override.yml
+certbot/
+env/
+venv/
+.venv/
+*.log
 /backend/__pycache__/
 /backend/config/__pycache__/
 
