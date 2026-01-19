@@ -29,6 +29,7 @@ This project is built using MongoDB as the database, Python for the backend, Rea
 *   **Backend**: A Python FastAPI application serving as the API layer.
 *   **Database**: Uses MongoDB for data storage.
 *   **Authentication**: Implements secure user authentication using OAuth2 and JSON Web Tokens (JWT) via the `python-jose` library.
+*   **Infrastructure**: Docker & Docker Compose for orchestration. Nginx serves the frontend and handles SSL/Reverse Proxying.
 
 #### Features & Data
 
@@ -44,27 +45,58 @@ Below is an overview of the project's file organization:
 ```
 .
 ├── backend/                # FastAPI backend source
+│   ├── Dockerfile          # Backend container definition 
 │   ├── config/             # Configuration (Database connection)
 │   ├── auth.py             # Authentication logic (JWT generation & validation)
 │   ├── main.py             # Main application entry point & API routes
 │   └── requirements.txt    # Python dependencies
 ├── frontend/               # React frontend source
+│   ├── Dockerfile          # Frontend container definition (Nginx image)
+│   ├── nginx.conf          # Nginx configuration (SSL, Proxy settings)
 │   ├── app/                # Main application code
 │   │   ├── components/     # Reusable UI components (Charts, ThemeToggle, etc.)
 │   │   ├── routes/         # Application pages (Dashboard, Login, Summary, Reports)
 │   │   └── utils/          # Utility functions (Auth helpers)
 │   ├── package.json        # Node.js dependencies and scripts
 │   └── ...config files     # Vite, Tailwind, React Router configurations
+├── mongo-init/             # Database initialization
+│   └── seed.sh             # Data seeding script
+├── docker-compose.yml      # Container orchestration service definition
 ├── *.json                  # Data source files (Adoption, Performance, Releases)
 └── README.md               # Project documentation
 ```
 
-### Installation
+### Installation & Usage
 
-To set up this project locally, follow these steps:
+#### Option 1: Docker (Recommended)
+
+1.  **Prerequisites**: Ensure you have Docker and Docker Compose installed.
+2.  **Environment Setup**: Create a `.env` file in the root directory.
+    *   *Note: For Docker, the MongoDB host must be `mongodb` (the service name), not localhost.*
+    ```env
+    MONGODB_URL=mongodb://mongodb:27017/m62
+    JWT_SECRET=your_jwt_secret_key
+    ACCESS_TOKEN_EXPIRE_MINUTES=30
+    ```
+3.  **Run the Application**:
+    ```bash
+    docker compose up --build
+    ```
+    This command will:
+    *   Start MongoDB and verify/seed initial data using `mongo-init/seed.sh`.
+    *   Start the Python Backend (exposed on port 3000).
+    *   Build the Frontend and serve it via Nginx (exposed on ports 80 and 443).
+
+4.  **Access**:
+    *   Open your browser to `http://localhost` (or `https://localhost`).
+    *   Log in with `matthew` / `matthew`.
+
+#### Option 2: Local Development
+
+To set up this project locally without Docker:
 
 1.  **Prerequisites**: Ensure you have Python (v3.10+), Node.js (v20+), and MongoDB installed and running.
-2.  **Environment Variables**: Create a `.env` file in the root directory with the following variables:
+2.  **Environment Variables**: Create a `.env` file in the root directory:
     ```env
     MONGODB_URL=mongodb://localhost:27017/m62
     JWT_SECRET=your_jwt_secret_key
@@ -80,29 +112,11 @@ To set up this project locally, follow these steps:
     cd ../frontend
     npm install
     ```
-
-### Usage
-
-#### Running the Application
-
-This project uses `concurrently` to run both the FastAPI backend and React frontend with a single command.
-
-1.  Navigate to the `frontend` directory:
-    ```bash
-    cd frontend
-    ```
-2.  Start the development servers:
+5.  **Running the Application**:
+    Navigate to the `frontend` directory and run:
     ```bash
     npm run dev
     ```
     *   The backend will start on `http://localhost:3000`.
-    *   The frontend will be available at `http://localhost:5173` (or the port specified by Vite).
-
-#### Logging In
-
-When you access the application, you will be prompted to log in. This project uses a hardcoded demonstration user for simplicity.
-
-*   **Username**: `matthew`
-*   **Password**: `matthew`
-
-Once authenticated, you will be redirected to the dashboard where you can explore the adoption metrics, model performance charts, and release timelines.
+    *   The frontend will be available at `http://localhost:5173`.
+    *   *Note: Local development uses `concurrently` to run both services.*
