@@ -5,9 +5,9 @@
   "scripts": {
     "build": "react-router build",
     "dev:frontend": "react-router dev",
-    "dev:backend": "cd ../backend && uvicorn main:app --reload --port 3000",
+    "dev:backend": "cd ../backend && uvicorn main:app --reload --host 0.0.0.0 --port 3000",
     "dev": "concurrently --kill-others \"npm:dev:frontend\" \"npm:dev:backend\"",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "react-router-serve ./build/client/",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
