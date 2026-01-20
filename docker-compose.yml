@@ -2,8 +2,8 @@ services:
   mongodb:
     image: mongo:8.2.1
     container_name: m62-mongodb
-    ports:
-      - "27017:27017"
+    expose:
+      - "27017"
     volumes:
       - mongodb_data:/data/db
       - ./genai_adoption.json:/docker-entrypoint-initdb.d/genai_adoption.json:ro
@@ -17,8 +17,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: m62-backend
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - MONGODB_URL=${MONGODB_URL}
       - JWT_SECRET=${JWT_SECRET}
