@@ -12,7 +12,6 @@ __pycache__/
 *.pyd
 .python-version
 .pytest_cache/
-/frontend/vite.config.ts
 /frontend/certs/
 *.key
 *.crt
