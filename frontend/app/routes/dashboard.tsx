@@ -64,6 +64,7 @@ export default function Dashboard() {
             </li>
           </ul>
         </div>
+        <hr className="border-(--accent) border-2 mt-6"/>
         {/*Topic Summary*/}
         <div className="max-w-7xl" id="summary">
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Summary</h3>
@@ -86,11 +87,9 @@ export default function Dashboard() {
             August 2024 to August 2025, adoption of AI by adults aged 18 to 64 rose from 44.6% to 54.6%.
             This highlights that these revolutionary technologies are being utilized by individuals at
             a growing rate as well.
-            <br />
-            <br />
-
           </p>
         </div>
+        <hr className="border-(--accent) border-2 mt-6"/>
         {/*Project Description*/}
         <div className="max-w-7xl" id="project-description">
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Project Description</h3>
@@ -113,6 +112,8 @@ export default function Dashboard() {
             <li className="pl-4">Backend Served By - Uvicorn</li>
             <li className="pl-4">Database - MongoDB</li>
             <li className="pl-4">Hosting - DigitalOcean</li>
+            <li className="pl-4">Containerization - Docker</li>
+            <li className="pl-4">Orchestration - Docker Compose</li>
             <li className="pl-4">AI Assistance - GPT-5 mini for code, Perplexity Pro/Max for implementation</li>
           </ul>
         </div>
