@@ -68,6 +68,12 @@ export default function Login() {
             Sign in
           </button>
         </div>
+        <div className="flex items-center gap-2">
+          <p className="italic text-gray-500 transition-colors duration-300">
+            Hint: Use my first name for both!<br />
+            This was hardcoded for demonstration purposes.
+          </p>
+        </div>
       </form>
     </main>
   );
