@@ -30,6 +30,7 @@ This project is built using MongoDB as the database, Python for the backend, Rea
 *   **Database**: Uses MongoDB for data storage.
 *   **Authentication**: Implements secure user authentication using OAuth2 and JSON Web Tokens (JWT) via the `python-jose` library.
 *   **Infrastructure**: Docker & Docker Compose for orchestration. Nginx serves the frontend and handles SSL/Reverse Proxying.
+*   **Tooling & CI**: ESLint/Prettier for frontend lint/format, Ruff for backend lint/format, Pytest for backend tests, and a GitHub Actions pipeline for CI + deploy.
 
 #### Features & Data
 
@@ -44,15 +45,24 @@ Below is an overview of the project's file organization:
 
 ```
 .
+├── .env.example            # Example environment variables
+├── .github/workflows/      # CI + deploy pipeline
+│   └── ci-deploy.yml        # GitHub Actions workflow
 ├── backend/                # FastAPI backend source
 │   ├── Dockerfile          # Backend container definition 
 │   ├── config/             # Configuration (Database connection)
 │   ├── auth.py             # Authentication logic (JWT generation & validation)
 │   ├── main.py             # Main application entry point & API routes
 │   └── requirements.txt    # Python dependencies
+│   ├── requirements-dev.txt # Dev/test dependencies (ruff, pytest)
+│   ├── pyproject.toml       # Ruff configuration
+│   └── tests/               # Backend tests
 ├── frontend/               # React frontend source
 │   ├── Dockerfile          # Frontend container definition (Nginx image)
 │   ├── nginx.conf          # Nginx configuration (SSL, Proxy settings)
+│   ├── .eslintrc.cjs         # ESLint configuration
+│   ├── .prettierignore       # Prettier ignore rules
+│   ├── .prettierrc.json      # Prettier configuration
 │   ├── app/                # Main application code
 │   │   ├── components/     # Reusable UI components (Charts, ThemeToggle, etc.)
 │   │   ├── routes/         # Application pages (Dashboard, Login, Summary, Reports)
@@ -71,7 +81,7 @@ Below is an overview of the project's file organization:
 #### Option 1: Docker (Recommended)
 
 1.  **Prerequisites**: Ensure you have Docker and Docker Compose installed.
-2.  **Environment Setup**: Create a `.env` file in the root directory.
+2.  **Environment Setup**: Create a `.env` file in the root directory (copy from `.env.example`).
     *   *Note: For Docker, the MongoDB host must be `mongodb` (the service name), not localhost.*
     ```env
     MONGODB_URL=mongodb://mongodb:27017/m62
@@ -120,3 +130,9 @@ To set up this project locally without Docker:
     *   The backend will start on `http://localhost:3000`.
     *   The frontend will be available at `http://localhost:5173`.
     *   *Note: Local development uses `concurrently` to run both services.*
+
+#### Quality & CI
+
+*   **Frontend**: `npm run lint`, `npm run format`, `npm run typecheck`
+*   **Backend**: `ruff check backend`, `ruff format --check backend`, `pytest backend`
+*   **CI + Deploy**: GitHub Actions runs lint/format/typecheck/tests on push to `main`, then deploys via SSH and `docker compose up -d --build`.
