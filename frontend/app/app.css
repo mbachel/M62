@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --transition-duration: 200ms;
@@ -7,8 +7,8 @@
   --navbar: #d4e2d4;
   --navbar-text: #4e5456;
   --text: #344638;
-  --accent: #ADC2B9;
-  --accent-hover: #9BB3A8;
+  --accent: #adc2b9;
+  --accent-hover: #9bb3a8;
   --reset: oklch(63.7% 0.237 25.331);
   --link: oklch(54.6% 0.245 262.881);
 }
@@ -16,10 +16,10 @@
 .dark {
   --bg: #36393e;
   --bg2: #282b30;
-  --navbar: #A598AE;
+  --navbar: #a598ae;
   --navbar-text: #333333;
   --text: #e6e6fa;
-  --accent: #9885AD;
+  --accent: #9885ad;
   --accent-hover: #877799;
   --reset: oklch(44.4% 0.177 26.899);
   --link: oklch(80.9% 0.105 251.813);
@@ -33,7 +33,6 @@
 .button {
   background-color: var(--navbar);
   color: var(--navbar-text);
-  
 }
 
 .link {
@@ -52,12 +51,18 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg);
   color: var(--text);
-  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+  transition:
+    background-color var(--transition-duration) ease,
+    color var(--transition-duration) ease;
 }
 
-header, nav {
+header,
+nav {
   background-color: var(--navbar);
-  transition: background-color var(--transition-duration) ease, border-color var(--transition-duration) ease, color var(--transition-duration) ease;
+  transition:
+    background-color var(--transition-duration) ease,
+    border-color var(--transition-duration) ease,
+    color var(--transition-duration) ease;
 }
 
 .page-container {
@@ -74,4 +79,3 @@ header, nav {
     transform: translateY(0);
   }
 }
-

@@ -1,51 +1,55 @@
-import type { Route } from "./+types/login";
-import { useNavigate } from "react-router";
-import { useState } from "react";
-import ThemeToggle from "../components/ThemeToggle";
+import type { Route } from './+types/login';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import ThemeToggle from '../components/ThemeToggle';
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Login - M62" }];
+  return [{ title: 'Login - M62' }];
 }
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    
-    const res = await fetch("/api/login", {
-      method: "POST",
+
+    const res = await fetch('/api/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, password }),
     });
 
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      setError(data.detail || "Login failed.");
+      setError(data.detail || 'Login failed.');
       return;
     }
 
     const { access_token } = await res.json();
-    localStorage.setItem("m62_token", access_token);
-    navigate("/dashboard");
+    localStorage.setItem('m62_token', access_token);
+    navigate('/dashboard');
   }
 
   return (
     <main className="flex flex-col pt-16 p-4 container mx-auto max-w-md">
-      <h2 className="flex items-center justify-center text-4xl font-semibold mb-24">Welcome to Project M62</h2>
+      <h2 className="flex items-center justify-center text-4xl font-semibold mb-24">
+        Welcome to Project M62
+      </h2>
       <div className="flex items-center justify-between pb-2">
         <h2 className="text-3xl font-semibold">Login</h2>
         <ThemeToggle />
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-lg">Username&nbsp;<span className="text-red-600">*</span></label>
+          <label className="block text-lg">
+            Username&nbsp;<span className="text-red-600">*</span>
+          </label>
           <input
             className="w-full border rounded p-2"
             type="text"
@@ -54,7 +58,9 @@ export default function Login() {
           />
         </div>
         <div>
-          <label className="block text-lg">Password&nbsp;<span className="text-red-600">*</span></label>
+          <label className="block text-lg">
+            Password&nbsp;<span className="text-red-600">*</span>
+          </label>
           <input
             className="w-full border rounded p-2"
             type="password"
@@ -64,13 +70,17 @@ export default function Login() {
         </div>
         {error && <p className="text-red-600">{error}</p>}
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-(--accent) text-(--navbar-text) text-lg rounded hover:cursor-pointer" type="submit">
+          <button
+            className="px-4 py-2 bg-(--accent) text-(--navbar-text) text-lg rounded hover:cursor-pointer"
+            type="submit"
+          >
             Sign in
           </button>
         </div>
         <div className="flex items-center gap-2">
           <p className="italic text-gray-500 transition-colors duration-300">
-            Hint: Use my first name for both!<br />
+            Hint: Use my first name for both!
+            <br />
             This was hardcoded for demonstration purposes.
           </p>
         </div>

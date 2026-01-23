@@ -1,11 +1,11 @@
-import type { Route } from "./+types/dashboard";
-import { Link, useNavigate } from "react-router";
-import { useEffect } from "react";
-import { isAuthenticated } from "../utils/auth";
-import QuickLinks from "~/components/QuickLinks";
+import type { Route } from './+types/dashboard';
+import { Link, useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { isAuthenticated } from '../utils/auth';
+import QuickLinks from '~/components/QuickLinks';
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Dashboard - M62" }];
+  return [{ title: 'Dashboard - M62' }];
 }
 
 export default function Dashboard() {
@@ -13,7 +13,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      navigate("/", { replace: true });
+      navigate('/', { replace: true });
     }
   }, [navigate]);
 
@@ -31,7 +31,7 @@ export default function Dashboard() {
           </ul>
         </div>
       </section>
-      <hr className="border-(--accent) border-2"/>
+      <hr className="border-(--accent) border-2" />
       <section className="py-6" id="summary-project-description">
         <h2 className="text-3xl font-semibold mb-4">Summary and Project Description</h2>
         {/*References*/}
@@ -40,67 +40,90 @@ export default function Dashboard() {
           <ul className="list-disc list-inside space-y-2">
             <li className="pl-4">
               AI Model & API Providers Analysis | Artificial Analysis. (n.d.). <br />
-              <Link to="https://artificialanalysis.ai/?models=gpt-5%2Cgpt-5-1%2Cgemini-3-pro%2Cgemini-2-5-pro%2Cclaude-opus-4-5-thinking%2Cclaude-4-5-sonnet-thinking%2Cgrok-4%2Ckimi-k2-thinking%2Cqwen3-max" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+              <Link
+                to="https://artificialanalysis.ai/?models=gpt-5%2Cgpt-5-1%2Cgemini-3-pro%2Cgemini-2-5-pro%2Cclaude-opus-4-5-thinking%2Cclaude-4-5-sonnet-thinking%2Cgrok-4%2Ckimi-k2-thinking%2Cqwen3-max"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-(--link) underline ml-12"
+              >
                 https://artificialanalysis.ai/
               </Link>
             </li>
             <li className="pl-4">
-              Bick, A., Blandin, A., & Deming, D. (2025, November 19). The state of generative AI adoption in 2025. St. Louis Fed. <br />
-              <Link to="https://www.stlouisfed.org/on-the-economy/2025/nov/state-generative-ai-adoption-2025" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+              Bick, A., Blandin, A., & Deming, D. (2025, November 19). The state of generative AI
+              adoption in 2025. St. Louis Fed. <br />
+              <Link
+                to="https://www.stlouisfed.org/on-the-economy/2025/nov/state-generative-ai-adoption-2025"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-(--link) underline ml-12"
+              >
                 https://www.stlouisfed.org/on-the-economy/2025/nov/state-generative-ai-adoption-2025
               </Link>
             </li>
             <li className="pl-4">
-              Cardillo, A. (2025, October 17). Best 44 Large Language Models (LLMs) in 2025. Exploding Topics. <br />
-              <Link to="https://explodingtopics.com/blog/list-of-llms" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+              Cardillo, A. (2025, October 17). Best 44 Large Language Models (LLMs) in 2025.
+              Exploding Topics. <br />
+              <Link
+                to="https://explodingtopics.com/blog/list-of-llms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-(--link) underline ml-12"
+              >
                 https://explodingtopics.com/blog/list-of-llms
               </Link>
             </li>
             <li className="pl-4">
-              CNovet, J., & Vanian, J. (2025, April 30). Satya Nadella says as much as 30% of Microsoft code is written by AI. CNBC. <br />
-              <Link to="https://www.cnbc.com/2025/04/29/satya-nadella-says-as-much-as-30percent-of-microsoft-code-is-written-by-ai.html" target="_blank" rel="noopener noreferrer" className="text-(--link) underline ml-12">
+              CNovet, J., & Vanian, J. (2025, April 30). Satya Nadella says as much as 30% of
+              Microsoft code is written by AI. CNBC. <br />
+              <Link
+                to="https://www.cnbc.com/2025/04/29/satya-nadella-says-as-much-as-30percent-of-microsoft-code-is-written-by-ai.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-(--link) underline ml-12"
+              >
                 https://www.cnbc.com/2025/04/29/satya-nadella-says-as-much-as-30percent-of-microsoft-code-is-written-by-ai.html
               </Link>
             </li>
           </ul>
         </div>
-        <hr className="border-(--accent) border-2 mt-6"/>
+        <hr className="border-(--accent) border-2 mt-6" />
         {/*Topic Summary*/}
         <div className="max-w-7xl" id="summary">
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Summary</h3>
           <p className="pl-4 mb-2 text-lg">
-            Artificial Intelligence has been one of the biggest topics in technology today. 
-            In particular, development and deployment of Generative AI has seen rapid growth.
-            Companies such as Anthropic, Google, and OpenAI have been leading the way in this 
-            AI renaissance. Recently, these companies have recently released powerful models, Claude 4.5,
-            Gemini 3 Pro, and GPT-5 respectively. Along with these industry giants, smaller companies
-            such as Alibaba and X (formerly Twitter) have also recently released their own powerful models, 
-            Qwen 3 Max and Grok 4, respectively. 
+            Artificial Intelligence has been one of the biggest topics in technology today. In
+            particular, development and deployment of Generative AI has seen rapid growth. Companies
+            such as Anthropic, Google, and OpenAI have been leading the way in this AI renaissance.
+            Recently, these companies have recently released powerful models, Claude 4.5, Gemini 3
+            Pro, and GPT-5 respectively. Along with these industry giants, smaller companies such as
+            Alibaba and X (formerly Twitter) have also recently released their own powerful models,
+            Qwen 3 Max and Grok 4, respectively.
             <br />
             <br />
-            From March to November, 2025, more than ten new major AI models
-            were released, which showcases the rapid pace of innovation in this topic. Satya Nadella,
-            CEO of Microsoft, stated that as much as 30% of Microsoft's code is now being written
-            by AI, according to Novet & Vanian (2025). This highlights the significant impact these 
-            revolutionary technologies are having on existing industries, like software development. 
-            Not only are huge corporations adopting AI, however. According to Bick et al. (2025), from 
-            August 2024 to August 2025, adoption of AI by adults aged 18 to 64 rose from 44.6% to 54.6%.
-            This highlights that these revolutionary technologies are being utilized by individuals at
-            a growing rate as well.
+            From March to November, 2025, more than ten new major AI models were released, which
+            showcases the rapid pace of innovation in this topic. Satya Nadella, CEO of Microsoft,
+            stated that as much as 30% of Microsoft's code is now being written by AI, according to
+            Novet & Vanian (2025). This highlights the significant impact these revolutionary
+            technologies are having on existing industries, like software development. Not only are
+            huge corporations adopting AI, however. According to Bick et al. (2025), from August
+            2024 to August 2025, adoption of AI by adults aged 18 to 64 rose from 44.6% to 54.6%.
+            This highlights that these revolutionary technologies are being utilized by individuals
+            at a growing rate as well.
           </p>
         </div>
-        <hr className="border-(--accent) border-2 mt-6"/>
+        <hr className="border-(--accent) border-2 mt-6" />
         {/*Project Description*/}
         <div className="max-w-7xl" id="project-description">
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Project Description</h3>
           <p className="pl-4 mb-2 text-lg">
-            This project is a full-stack web application built as a final project for ITIS 
-            5166 Backend Application Development. This website was built with 4 pages: Login,
-            Dashboard, Summary, and Reports. Dashboard, Summary, and Reports are only visible
-            to those who are logged in, with authentication via JWT. The front end is made up
-            of React routes, utilizing multiple React components, with React Router to navigate.
-            MongoDB is used to host the data, while Python is leveraged to serve the data to the
-            frontend. To make this project a reality, I utilized the specific tech stack listed below.
+            This project is a full-stack web application built as a final project for ITIS 5166
+            Backend Application Development. This website was built with 4 pages: Login, Dashboard,
+            Summary, and Reports. Dashboard, Summary, and Reports are only visible to those who are
+            logged in, with authentication via JWT. The front end is made up of React routes,
+            utilizing multiple React components, with React Router to navigate. MongoDB is used to
+            host the data, while Python is leveraged to serve the data to the frontend. To make this
+            project a reality, I utilized the specific tech stack listed below.
           </p>
           <h3 className="pl-2 mt-6 mb-2 text-2xl font-semibold">Tech Stack</h3>
           <ul className="mb-2 text-lg list-disc list-inside">
@@ -114,7 +137,9 @@ export default function Dashboard() {
             <li className="pl-4">Hosting - DigitalOcean</li>
             <li className="pl-4">Containerization - Docker</li>
             <li className="pl-4">Orchestration - Docker Compose</li>
-            <li className="pl-4">AI Assistance - GPT-5 mini for code, Perplexity Pro/Max for implementation</li>
+            <li className="pl-4">
+              AI Assistance - GPT-5 mini for code, Perplexity Pro/Max for implementation
+            </li>
           </ul>
         </div>
       </section>

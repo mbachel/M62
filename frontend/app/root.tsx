@@ -8,33 +8,33 @@ import {
   Link,
   useLocation,
   useNavigate,
-} from "react-router";
+} from 'react-router';
 
-import type { Route } from "./+types/root";
-import "./app.css";
-import ThemeToggle from "./components/ThemeToggle";
+import type { Route } from './+types/root';
+import './app.css';
+import ThemeToggle from './components/ThemeToggle';
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
   },
   {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const showNav = location.pathname !== "/";
+  const showNav = location.pathname !== '/';
 
   function handleSignOut() {
-    localStorage.removeItem("m62_token");
-    navigate("/");
+    localStorage.removeItem('m62_token');
+    navigate('/');
   }
 
   return (
@@ -50,18 +50,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <header>
             <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
               <nav className="flex items-center border-2 rounded-full overflow-hidden my-2 dark:border-(--navbar-text)">
-                <Link to="/dashboard" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full">
+                <Link
+                  to="/dashboard"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full"
+                >
                   Dashboard
                 </Link>
-                <Link to="/summary" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
+                <Link
+                  to="/summary"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l"
+                >
                   Summary
                 </Link>
-                <Link to="/reports" className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l">
+                <Link
+                  to="/reports"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l"
+                >
                   Reports
                 </Link>
               </nav>
               <div className="flex items-center gap-3">
-                <Link to="/" onClick={handleSignOut} className="text-lg button rounded transition px-4 py-2">
+                <Link
+                  to="/"
+                  onClick={handleSignOut}
+                  className="text-lg button rounded transition px-4 py-2"
+                >
                   Sign out
                 </Link>
                 <ThemeToggle />
@@ -77,10 +90,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ScrollRestoration />
         <Scripts />
         {showNav && (
-        <footer className="bg-(--navbar) text-(--navbar-text) h-16 flex items-center justify-center text-lg">
-          &copy; 2025 Matthew Bachelder
-        </footer>
-      )}
+          <footer className="bg-(--navbar) text-(--navbar-text) h-16 flex items-center justify-center text-lg">
+            &copy; 2025 Matthew Bachelder
+          </footer>
+        )}
       </body>
     </html>
   );
@@ -91,16 +104,14 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
+  let message = 'Oops!';
+  let details = 'An unexpected error occurred.';
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? '404' : 'Error';
     details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+      error.status === 404 ? 'The requested page could not be found.' : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;

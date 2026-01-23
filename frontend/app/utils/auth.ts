@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 
 // Minimal JWT helpers for client-side auth checks
 export function getToken(): string | null {
   try {
-    return localStorage.getItem("m62_token");
+    return localStorage.getItem('m62_token');
   } catch (err) {
     console.error(err);
     return null;
@@ -12,19 +12,19 @@ export function getToken(): string | null {
 
 function base64UrlDecode(input: string) {
   // base64url -> base64
-  let base64 = input.replace(/-/g, "+").replace(/_/g, "/");
+  let base64 = input.replace(/-/g, '+').replace(/_/g, '/');
   const pad = base64.length % 4;
-  if (pad === 2) base64 += "==";
-  else if (pad === 3) base64 += "=";
+  if (pad === 2) base64 += '==';
+  else if (pad === 3) base64 += '=';
   else if (pad !== 0) return null;
   try {
     return decodeURIComponent(
       atob(base64)
-        .split("")
+        .split('')
         .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         })
-        .join("")
+        .join(''),
     );
   } catch (e) {
     console.error(e);
@@ -34,7 +34,7 @@ function base64UrlDecode(input: string) {
 
 export function parseJwt(token: string): any | null {
   try {
-    const parts = token.split(".");
+    const parts = token.split('.');
     if (parts.length < 2) return null;
     const payload = parts[1];
     const json = base64UrlDecode(payload);
@@ -52,7 +52,7 @@ export function isAuthenticated(): boolean {
   const payload = parseJwt(token);
   if (!payload) return false;
   // Check exp if present (seconds since epoch)
-  if (payload.exp && typeof payload.exp === "number") {
+  if (payload.exp && typeof payload.exp === 'number') {
     const now = Math.floor(Date.now() / 1000);
     return payload.exp > now;
   }
@@ -62,7 +62,7 @@ export function isAuthenticated(): boolean {
 
 export function signOut(): void {
   try {
-    localStorage.removeItem("m62_token");
+    localStorage.removeItem('m62_token');
   } catch (e) {
     console.error(e);
   }
@@ -71,5 +71,5 @@ export function signOut(): void {
 export function useSignOut(): void {
   const navigate = useNavigate();
   signOut();
-  navigate("/");
+  navigate('/');
 }
