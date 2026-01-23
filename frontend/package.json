@@ -9,7 +9,7 @@
     "dev": "concurrently --kill-others \"npm:dev:frontend\" \"npm:dev:backend\"",
     "start": "react-router-serve ./build/client/",
     "typecheck": "react-router typegen && tsc",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 10",
     "format": "prettier --check .",
     "format:write": "prettier --write ."
   },
