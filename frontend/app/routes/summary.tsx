@@ -1,7 +1,7 @@
 import type { Route } from "./+types/summary";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
-import { isAuthenticated, handleSignOut } from "../utils/auth";
+import { isAuthenticated } from "../utils/auth";
 import ARChart from "../components/MRChart";
 import QuickLinks from "~/components/QuickLinks";
 

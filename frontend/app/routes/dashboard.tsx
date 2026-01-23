@@ -1,7 +1,7 @@
 import type { Route } from "./+types/dashboard";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
-import { isAuthenticated, handleSignOut } from "../utils/auth";
+import { isAuthenticated } from "../utils/auth";
 import QuickLinks from "~/components/QuickLinks";
 
 export function meta({}: Route.MetaArgs) {
