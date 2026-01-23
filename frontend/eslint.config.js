@@ -22,6 +22,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.es2021,
+        React: 'readonly',
       },
     },
     plugins: {
@@ -35,6 +36,18 @@ export default [
       ...reactPlugin.configs['jsx-runtime'].rules,
       ...reactHooksPlugin.configs.recommended.rules,
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+      'no-unused-vars': 'off',
+      'no-empty-pattern': 'off',
+      'react/no-unescaped-entities': 'off',
+      'react/react-in-jsx-scope': 'off',
+      'no-empty': 'warn',
     },
     settings: {
       react: {
