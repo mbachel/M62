@@ -1,4 +1,9 @@
 import os
+import sys
+
+# adjust path to import main app
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 # set environment variables for testing
 os.environ.setdefault("JWT_SECRET", "test-secret")
