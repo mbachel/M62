@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { handleSignOut } from "../utils/auth";
+import { useSignOut } from "../utils/auth";
 import type { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
 export default function QuickLinks(props: { firstPage: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; secondPage: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) {
@@ -20,7 +20,7 @@ export default function QuickLinks(props: { firstPage: string | number | bigint 
                     </Link>
                 </li>
                 <li>
-                    <Link to="/" onClick={handleSignOut} className="button rounded transition px-4 py-2">
+                    <Link to="/" onClick={useSignOut} className="button rounded transition px-4 py-2">
                         Sign out
                     </Link>
                 </li>
