@@ -52,6 +52,7 @@ jobs:
               run: ruff format --check backend
 
             - name: Backend tests
+              working-directory: backend
               run: pytest backend
 
     deploy:
