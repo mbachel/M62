@@ -5,6 +5,7 @@ export function getToken(): string | null {
   try {
     return localStorage.getItem("m62_token");
   } catch (err) {
+    console.error(err);
     return null;
   }
 }
@@ -26,6 +27,7 @@ function base64UrlDecode(input: string) {
         .join("")
     );
   } catch (e) {
+    console.error(e);
     return null;
   }
 }
@@ -39,6 +41,7 @@ export function parseJwt(token: string): any | null {
     if (!json) return null;
     return JSON.parse(json);
   } catch (e) {
+    console.error(e);
     return null;
   }
 }
@@ -61,11 +64,11 @@ export function signOut(): void {
   try {
     localStorage.removeItem("m62_token");
   } catch (e) {
-    // ignore
+    console.error(e);
   }
 }
 
-export function handleSignOut(): void {
+export function useSignOut(): void {
   const navigate = useNavigate();
   signOut();
   navigate("/");
