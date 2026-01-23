@@ -53,7 +53,7 @@ jobs:
 
             - name: Backend tests
               working-directory: backend
-              run: pytest backend
+              run: pytest
 
     deploy:
         runs-on: ubuntu-latest
