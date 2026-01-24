@@ -28,10 +28,7 @@ logs:
 	docker compose logs -f
 
 tag:
-	@if [ -z "$(VERSION)" ]; then \
-		echo "Usage: make tag VERSION=v.0.1"; \
-		exit 1; \
-	fi
+	@powershell -Command "if ('$(VERSION)' -eq '') { Write-Host 'Usage: make tag VERSION=v0.1.0'; exit 1 }"
 	@echo "Creating tag $(VERSION)..."
 	git tag -a $(VERSION) -m "Release $(VERSION)"
 	git push origin $(VERSION)
