@@ -68,7 +68,7 @@ jobs:
               run: |
                 if [[ "${{ github.ref }}" ==refs/tags/* ]]; then
                   echo "mode=tag" >> $GITHUB_OUTPUT
-                  echo "ref=${{ github.ref }}" >> $GITHUB_OUTPUT
+                  echo "ref=${{ github.ref_name }}" >> $GITHUB_OUTPUT
                 else
                   echo "mode=main" >> $GITHUB_OUTPUT
                   echo "ref=main" >> $GITHUB_OUTPUT
@@ -95,7 +95,7 @@ jobs:
                   
                   echo "Deployed ${{ steps.deploy_mode.outputs.ref }} (stable)"
 
-            - name:
+            - name: Deploy via SSH (Main - Iteration)
               if: steps.deploy_mode.outputs.mode == 'main'
               uses: appleboy/ssh-action@v1.2.4
               with:
