@@ -221,14 +221,7 @@ export default function MPChart() {
 
   return (
     <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        columnGap: '12px',
-        rowGap: '32px',
-        justifyItems: 'center',
-        alignItems: 'center',
-      }}
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-8 justify-items-center items-center"
     >
       {data.map((doc, idx) => (
         <svg
@@ -236,13 +229,8 @@ export default function MPChart() {
           ref={(el) => {
             chartRefs.current[idx] = el;
           }}
-          width={390}
-          height={390}
-          style={{
-            borderRadius: '18px',
-            boxShadow: '0 0 12px #2222',
-            margin: '0 auto',
-          }}
+          viewBox="0 0 390 390"
+          className="w-full max-w-[390px] h-auto mx-auto rounded-[18px] shadow-[0_0_12px_#2222]"
           aria-label={`Radar chart for ${doc.model_name}`}
         />
       ))}

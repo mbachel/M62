@@ -48,28 +48,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {showNav && (
           <header>
-            <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
-              <nav className="flex items-center border-2 rounded-full overflow-hidden my-2 dark:border-(--navbar-text)">
+            <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
+              <nav className="flex flex-col w-full md:w-auto md:flex-row items-center border-2 rounded-xl md:rounded-full overflow-hidden my-2 dark:border-(--navbar-text)">
                 <Link
                   to="/dashboard"
-                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline rounded-l-full"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline md:rounded-l-full border-b md:border-b-0 md:border-r-0"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/summary"
-                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline border-b md:border-b-0 md:border-l"
                 >
                   Summary
                 </Link>
                 <Link
                   to="/reports"
-                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition px-8 flex items-center h-10 text-xl font-medium hover:underline border-l"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline md:border-l"
                 >
                   Reports
                 </Link>
               </nav>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 w-full md:w-auto justify-center">
                 <Link
                   to="/"
                   onClick={handleSignOut}

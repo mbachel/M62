@@ -195,7 +195,9 @@ export default function TimeSeriesLollipopChart() {
 
   return (
     <>
-      <svg ref={ref}></svg>
+      <div className="w-full overflow-x-auto pb-4">
+        <svg ref={ref}></svg>
+      </div>
       {popupData && popupPos && (
         <div
           style={{
