@@ -1,145 +1,215 @@
-# ITIS 5166 - Backend Application Development
+# M62 - Generative AI Analytics Dashboard
 
-## Final Project - Matthew Bachelder - M62
+**ITIS 5166 - Backend Application Development - Final Project**
 
-Final project website built with React, MongoDB, Python, JWT, and others. The site is a culmination of everything I have learned this semester in this course.
+A full-stack web application showcasing recent innovations in Generative AI with interactive data visualizations, user authentication, and a production-ready deployment pipeline.
 
-### Table of Contents
+---
 
-- [What this project is](#what-this-project-is)
-- [Project Overview](#project-overview)
-- [Project Details](#project-details)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
+## Quick Start
 
-### What this project is
+### Prerequisites
+- Docker & Docker Compose installed
+- Ports 80, 443, and 3000 available
 
-This repository contains the source for Matthew Bachelder's final project for ITIS 5166, Backend Application Development.
+### Run Locally
 
-### Project Overview
+```bash
+# 1. Copy environment variables
+cp .env.example .env
 
-This project is built using MongoDB as the database, Python for the backend, React for the frontend, is about "Recent Innovations in Generative AI." This project also uses JWT for authentication, a charting library, and NGINX or Apache to serve frontend.
+# 2. Start all services
+docker compose up -d --build
 
-### Project Details
+# 3. Open in browser
+# http://localhost (or https://localhost)
 
-#### Technology Stack
+# 4. Log in
+# Username: matthew
+# Password: matthew
+```
 
-*   **Frontend**: Built with React and React Router. Styling is handled by Tailwind CSS, and data visualizations are powered by D3.js.
-*   **Backend**: A Python FastAPI application serving as the API layer.
-*   **Database**: Uses MongoDB for data storage.
-*   **Authentication**: Implements secure user authentication using OAuth2 and JSON Web Tokens (JWT) via the `python-jose` library.
-*   **Infrastructure**: Docker & Docker Compose for orchestration. Nginx serves the frontend and handles SSL/Reverse Proxying.
-*   **Tooling & CI**: ESLint/Prettier for frontend lint/format, Ruff for backend lint/format, Pytest for backend tests, Make for task automation, and a GitHub Actions pipeline for CI + deploy.
+**That's it!** All three services (MongoDB, Backend, Frontend) start automatically.
 
-#### Features & Data
+---
 
-The application provides insights into the rapidly evolving landscape of Generative AI:
+## What's Running
+| Service | Purpose | Port |
+|---------|---------|------|
+| **MongoDB** | Data storage for AI models and releases | 27017 (internal) |
+| **Backend** (FastAPI) | REST API serving authentication & data endpoints | 3000 (internal) |
+| **Frontend** (React + Nginx) | Web UI with charts and dashboards | 80/443 (public) |
 
-*   **Model Performance**: Compares top-tier models (e.g., Gemini 3 Pro, Claude Sonnet 4.5) across benchmarks like *Humanity's Last Exam*, *GPQA Diamond*, and *LiveCodeBench*.
-*   **Release Timeline**: Tracks key model releases and their specific technological innovations.
+**Data note:** All data is seeded from static JSON files on startup (`mongo-init/seed.sh`, `model_performances.json`, `model_releases.json` (`genai_adoption.json` is unused)). The database resets on every container restart.
 
-### Project Structure
+---
 
-Below is an overview of the project's file organization:
+## Development
+
+### Local Setup (without Docker)
+
+```bash
+# Concurrently allows both backend and frontend services to run through one terminal
+# MongoDB database should already be connected and seeded with JSON data
+cd frontend
+npm run dev
+# Runs API at http://localhost:3000
+# Runs frontend at http://localhost:5173
+```
+
+### Quality Checks
+```bash
+# Frontend lint/format/typecheck
+npm run lint
+npm run format
+npm run typecheck
+
+# Backend lint/format/testing
+ruff check backend
+ruff format --check backend
+pytest backend
+```
+
+## Deployment
+### One-Time Server Setup
+
+```bash
+# SSH into your (I use DigitalOcean) server
+ssh deploy@your-server
+
+# Clone repo
+git clone https://github.com/mbachel/M62.git
+cd M62
+
+# Copy environment file
+cp .env.example .env
+# Edit .env with your JWT_SECRET and MongoDB URL
+# Keep the MongoDB URL default if you plan to let it seed itself
+
+# Test startup
+docker compose up -d --build
+```
+
+### Deploy Updates
+
+After pushing changes to `main`:
+
+```bash
+ssh deploy@your-server 'cd /home/deploy/M62 && git pull && docker compose up -d --build'
+```
+
+---
+
+## Deployment Sanity Check
+
+After deploying, verify everything is running:
+```bash
+# SSH into server
+ssh deploy@your-server
+
+#Check all services running
+cd home/deploy/M62
+docker compose ps
+
+#Expected output: all services UP (not Exit)
+```
+
+### View Logs
+
+```bash
+# Real-time logs from all services
+docker compose logs -f
+
+# Tail last 50 lines
+docker compose logs -n 50 -f
+
+# Specific service
+docker compose logs -f backend
+```
+
+### Restart / Rebuild
+
+```bash
+# Restart without rebuild
+docker compose restart
+
+# Full restart with code rebuild
+docker compose up -d --build
+
+# Stop all services
+docker compose down
+```
+
+---
+
+## Project Status
+
+### What's Maintained
+- ✅ Bug fixes and security updates via [Dependabot](https://dependabot.com)
+- ✅ CI/CD pipeline runs on all PRs and pushes
+- ✅ Production deployment via GitHub Actions
+
+### What's NOT Maintained
+- ❌ New features (this is the final project - it's complete)
+- ❌ Data updates (static JSON files; no backend admin panel)
+- ❌ Active development (archive expected upon graduation)
+
+This is a project snapshot, not an actively developed product.
+
+---
+
+## Architecture
 
 ```
 .
-├── .env.example            # Example environment variables
-├── .github/workflows/      # CI + deploy pipeline
-│   └── ci-deploy.yml        # GitHub Actions workflow
-├── backend/                # FastAPI backend source
-│   ├── Dockerfile          # Backend container definition 
-│   ├── config/             # Configuration (Database connection)
-│   ├── auth.py             # Authentication logic (JWT generation & validation)
-│   ├── main.py             # Main application entry point & API routes
-│   └── requirements.txt    # Python dependencies
-│   ├── requirements-dev.txt # Dev/test dependencies (ruff, pytest)
-│   ├── pyproject.toml       # Ruff configuration
-│   └── tests/               # Backend tests
-├── frontend/               # React frontend source
-│   ├── Dockerfile          # Frontend container definition (Nginx image)
-│   ├── nginx.conf          # Nginx configuration (SSL, Proxy settings)
-│   ├── eslint.config.js      # ESLint configuration
-│   ├── .prettierignore       # Prettier ignore rules
-│   ├── .prettierrc.json      # Prettier configuration
-│   ├── app/                # Main application code
-│   │   ├── components/     # Reusable UI components (Charts, ThemeToggle, etc.)
-│   │   ├── routes/         # Application pages (Dashboard, Login, Summary, Reports)
-│   │   ├── routes.ts       # Route definitions
-│   │   └── utils/          # Utility functions (Auth helpers)
-│   ├── package.json        # Node.js dependencies and scripts
-│   ├── react-router.config.ts # React Router configuration
-│   └── ...config files     # Vite, Tailwind configurations
-├── mongo-init/             # Database initialization
-│   └── seed.sh             # Data seeding script
-├── docker-compose.yml      # Container orchestration service definition
-├── Makefile                # Task automation commands
-├── rollback.sh             # Rollback script
-├── *.json                  # Data source files (Adoption, Performance, Releases)
-└── README.md               # Project documentation
+├── frontend/                 # React + Vite + Tailwind
+│   ├── Dockerfile            # Nginx reverse proxy
+│   ├── nginx.conf            # SSL + API routing
+│   └── app/                  # React components & pages
+├── backend/                  # Python FastAPI
+│   ├── Dockerfile            # FastAPI application
+│   ├── main.py               # Routes & business logic
+│   ├── auth.py               # JWT authentication
+│   └── tests/                # Pytest suite
+├── docker-compose.yml        # Service orchestration
+├── .github/workflows/        # GitHub Actions CI/CD
+│   └── ci-deploy.yml         # Lint, test, deploy pipeline
+└── .env.example              # Environment template
 ```
 
-### Installation & Usage
+---
 
-#### Option 1: Docker (using Makefile)
+## Tech Stack
 
-1.  **Prerequisites**: Ensure you have Docker, Docker Compose, and Make installed (optional, commands can be run manually).
-2.  **Environment Setup**: Create a `.env` file in the root directory (copy from `.env.example`).
-    *   *Note: For Docker, the MongoDB host must be `mongodb` (the service name), not localhost.*
-    ```env
-    MONGODB_URL=mongodb://mongodb:27017/m62
-    JWT_SECRET=your_jwt_secret_key
-    ACCESS_TOKEN_EXPIRE_MINUTES=30
-    ```
-3.  **Run the Application**:
-    ```bash
-    make up
-    # or manual equivalent: docker compose up -d --build
-    ```
-    This command will:
-    *   Start MongoDB and verify/seed initial data using `mongo-init/seed.sh`.
-    *   Start the Python Backend (exposed on port 3000).
-    *   Build the Frontend and serve it via Nginx (exposed on ports 80 and 443).
+- **Frontend:** React 19, React Router, Tailwind CSS, D3.js charts, Vite
+- **Backend:** Python 3.13, FastAPI, OAuth2/JWT, Pytest
+- **Database:** MongoDB 8.2
+- **Infrastructure:** Docker, Docker Compose, Nginx (SSL/reverse proxy)
+- **CI/CD:** GitHub Actions (lint, test, deploy via SSH)
+- **Tooling:** ESLint, Prettier, Ruff, Pytest, Dependabot
 
-4.  **Access**:
-    *   Open your browser to `http://localhost` (or `https://localhost`).
-    *   Log in with `matthew` / `matthew`.
-    *   View logs with `make logs`.
-    *   Stop services with `make down`.
+---
 
-#### Option 2: Local Development
+## Features
 
-To set up this project locally without Docker:
+- **Model Performance Dashboard:** Compare top-tier LLMs across benchmarks
+- **Release Timeline:** Track AI model releases and innovations
+- **User Authentication:** Secure login with JWT tokens
+- **Responsive UI:** Mobile-friendly design with theme toggle
+- **Data Visualizations:** Interactive charts powered by D3.js
 
-1.  **Prerequisites**: Ensure you have Python, Node.js, and MongoDB installed and running.
-2.  **Environment Variables**: Create a `.env` file in the root directory:
-    ```env
-    MONGODB_URL=mongodb://localhost:27017/m62
-    JWT_SECRET=your_jwt_secret_key
-    ACCESS_TOKEN_EXPIRE_MINUTES=30
-    ```
-3.  **Backend Dependencies**:
-    ```bash
-    cd backend
-    pip install -r requirements.txt
-    ```
-4.  **Frontend Dependencies**:
-    ```bash
-    cd ../frontend
-    npm install
-    ```
-5.  **Running the Application**:
-    Navigate to the `frontend` directory and run:
-    ```bash
-    npm run dev
-    ```
-    *   The backend will start on `http://localhost:3000`.
-    *   The frontend will be available at `http://localhost:5173`.
-    *   *Note: Local development uses `concurrently` to run both services.*
+---
 
-#### Quality & CI
+## Support & Issues
 
-*   **Frontend**: `npm run lint`, `npm run format`, `npm run typecheck`
-*   **Backend**: `ruff check backend`, `ruff format --check backend`, `pytest backend`
-*   **CI + Deploy**: GitHub Actions runs lint/format/typecheck/tests on push to `main`, then deploys via SSH and `docker compose up -d --build`.
+This project is no longer in active development. For questions during handoff:
+
+1. Check the Architecture section above
+2. Review `docker-compose.yml` for service configuration
+3. Check `.env.example` for required environment variables
+4. Review GitHub Actions workflow (`.github/workflows/ci-deploy.yml`) for deployment process
+
+---
+
+**Created:** Fall 2025  
+**Status:** Complete (Final Project)
