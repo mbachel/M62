@@ -30,7 +30,7 @@ This project is built using MongoDB as the database, Python for the backend, Rea
 *   **Database**: Uses MongoDB for data storage.
 *   **Authentication**: Implements secure user authentication using OAuth2 and JSON Web Tokens (JWT) via the `python-jose` library.
 *   **Infrastructure**: Docker & Docker Compose for orchestration. Nginx serves the frontend and handles SSL/Reverse Proxying.
-*   **Tooling & CI**: ESLint/Prettier for frontend lint/format, Ruff for backend lint/format, Pytest for backend tests, and a GitHub Actions pipeline for CI + deploy.
+*   **Tooling & CI**: ESLint/Prettier for frontend lint/format, Ruff for backend lint/format, Pytest for backend tests, Make for task automation, and a GitHub Actions pipeline for CI + deploy.
 
 #### Features & Data
 
@@ -60,27 +60,31 @@ Below is an overview of the project's file organization:
 ├── frontend/               # React frontend source
 │   ├── Dockerfile          # Frontend container definition (Nginx image)
 │   ├── nginx.conf          # Nginx configuration (SSL, Proxy settings)
-│   ├── .eslintrc.cjs         # ESLint configuration
+│   ├── eslint.config.js      # ESLint configuration
 │   ├── .prettierignore       # Prettier ignore rules
 │   ├── .prettierrc.json      # Prettier configuration
 │   ├── app/                # Main application code
 │   │   ├── components/     # Reusable UI components (Charts, ThemeToggle, etc.)
 │   │   ├── routes/         # Application pages (Dashboard, Login, Summary, Reports)
+│   │   ├── routes.ts       # Route definitions
 │   │   └── utils/          # Utility functions (Auth helpers)
 │   ├── package.json        # Node.js dependencies and scripts
-│   └── ...config files     # Vite, Tailwind, React Router configurations
+│   ├── react-router.config.ts # React Router configuration
+│   └── ...config files     # Vite, Tailwind configurations
 ├── mongo-init/             # Database initialization
 │   └── seed.sh             # Data seeding script
 ├── docker-compose.yml      # Container orchestration service definition
+├── Makefile                # Task automation commands
+├── rollback.sh             # Rollback script
 ├── *.json                  # Data source files (Adoption, Performance, Releases)
 └── README.md               # Project documentation
 ```
 
 ### Installation & Usage
 
-#### Option 1: Docker (Recommended)
+#### Option 1: Docker (using Makefile)
 
-1.  **Prerequisites**: Ensure you have Docker and Docker Compose installed.
+1.  **Prerequisites**: Ensure you have Docker, Docker Compose, and Make installed (optional, commands can be run manually).
 2.  **Environment Setup**: Create a `.env` file in the root directory (copy from `.env.example`).
     *   *Note: For Docker, the MongoDB host must be `mongodb` (the service name), not localhost.*
     ```env
@@ -90,7 +94,8 @@ Below is an overview of the project's file organization:
     ```
 3.  **Run the Application**:
     ```bash
-    docker compose up --build
+    make up
+    # or manual equivalent: docker compose up -d --build
     ```
     This command will:
     *   Start MongoDB and verify/seed initial data using `mongo-init/seed.sh`.
@@ -100,12 +105,14 @@ Below is an overview of the project's file organization:
 4.  **Access**:
     *   Open your browser to `http://localhost` (or `https://localhost`).
     *   Log in with `matthew` / `matthew`.
+    *   View logs with `make logs`.
+    *   Stop services with `make down`.
 
 #### Option 2: Local Development
 
 To set up this project locally without Docker:
 
-1.  **Prerequisites**: Ensure you have Python (v3.10+), Node.js (v20+), and MongoDB installed and running.
+1.  **Prerequisites**: Ensure you have Python, Node.js, and MongoDB installed and running.
 2.  **Environment Variables**: Create a `.env` file in the root directory:
     ```env
     MONGODB_URL=mongodb://localhost:27017/m62
