@@ -40,7 +40,7 @@ docker compose up -d --build
 | **Backend** (FastAPI) | REST API serving authentication & data endpoints | 3000 (internal) |
 | **Frontend** (React + Nginx) | Web UI with charts and dashboards | 80/443 (public) |
 
-**Data note:** All data is seeded from static JSON files on startup (`mongo-init/seed.sh`, `model_performances.json`, `model_releases.json` (`genai_adoption.json` is unused)). The database resets on every container restart.
+**Data note:** All data is seeded from static JSON files on startup (`mongo-init/seed.sh`, `model_performance.json`, `model_releases.json` (`genai_adoption.json` is unused)). The database resets on every container restart.
 
 ---
 
@@ -147,7 +147,7 @@ docker compose down
 ### What's Maintained
 - ✅ Bug fixes and security updates via [Dependabot](https://dependabot.com)
 - ✅ CI/CD pipeline runs on all PRs and pushes
-- ✅ Production deployment via GitHub Actions
+- ✅ Automated deployment on push to main
 
 ### What's NOT Maintained
 - ❌ New features (this is the final project - it's complete)
