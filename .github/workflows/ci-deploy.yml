@@ -66,7 +66,7 @@ jobs:
             - name: Determine deployment mode
               id: deploy_mode
               run: |
-                if [[ "${{ github.ref }}" ==refs/tags/* ]]; then
+                if [[ "${{ github.ref }}" == refs/tags/* ]]; then
                   echo "mode=tag" >> $GITHUB_OUTPUT
                   echo "ref=${{ github.ref_name }}" >> $GITHUB_OUTPUT
                 else
