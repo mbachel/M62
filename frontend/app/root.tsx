@@ -52,19 +52,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <nav className="flex flex-col w-full md:w-auto md:flex-row items-center border-2 rounded-xl md:rounded-full overflow-hidden my-2 dark:border-(--navbar-text)">
                 <Link
                   to="/dashboard"
-                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline md:rounded-l-full border-b md:border-b-0 md:border-r-0"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline md:rounded-l-full border-b md:border-b-0 md:border-r"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/summary"
-                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline border-b md:border-b-0 md:border-l"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline border-b md:border-b-0 md:border-r"
                 >
                   Summary
                 </Link>
                 <Link
                   to="/reports"
-                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline md:border-l"
+                  className="bg-(--accent) text-(--navbar-text) border-(--navbar-text) hover:bg-(--accent-hover) transition w-full md:w-auto justify-center md:justify-start px-8 flex items-center h-10 text-xl font-medium hover:underline"
                 >
                   Reports
                 </Link>

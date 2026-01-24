@@ -51,8 +51,8 @@ export default function QuickLinks(props: {
       <hr className="border-(--accent) border-2" />
       <section className="mt-2 py-6" id="quick-links">
         <h2 className="text-3xl font-semibold mb-4">Quick Links</h2>
-        <ul className="pl-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 text-lg items-center">
-          <li>
+        <ul className="pl-0 md:pl-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 text-lg items-center w-full md:w-auto">
+          <li className="w-full md:w-auto">
             <Link
               to={`/${props.firstPage}`}
               className="button rounded transition px-4 py-2 block w-full text-center"
@@ -60,7 +60,7 @@ export default function QuickLinks(props: {
               View {props.firstPage} page
             </Link>
           </li>
-          <li>
+          <li className="w-full md:w-auto">
             <Link
               to={`/${props.secondPage}`}
               className="button rounded transition px-4 py-2 block w-full text-center"
@@ -68,7 +68,7 @@ export default function QuickLinks(props: {
               View {props.secondPage} page
             </Link>
           </li>
-          <li>
+          <li className="w-full md:w-auto">
             <Link
               to="/"
               onClick={useSignOut}
