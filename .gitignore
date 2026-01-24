@@ -24,7 +24,7 @@ venv/
 *.log
 /backend/__pycache__/
 /backend/config/__pycache__/
-
+.deployment/
 # React Router
 /frontend/.react-router/
 /frontend/build/
