@@ -63,40 +63,7 @@ jobs:
         needs: ci
 
         steps:
-            - name: Determine deployment mode
-              id: deploy_mode
-              run: |
-                if [[ "${{ github.ref }}" == refs/tags/* ]]; then
-                  echo "mode=tag" >> $GITHUB_OUTPUT
-                  echo "ref=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-                else
-                  echo "mode=main" >> $GITHUB_OUTPUT
-                  echo "ref=main" >> $GITHUB_OUTPUT
-                fi
-
-            - name: Deploy via SSH (Tag - Stable)
-              if: steps.deploy_mode.outputs.mode == 'tag'
-              uses: appleboy/ssh-action@v1.2.4
-              with:
-                host: ${{ secrets.DEPLOY_HOST }}
-                username: ${{ secrets.DEPLOY_USER }}
-                key: ${{ secrets.DEPLOY_KEY }}
-                script: |
-                  cd /home/deploy/M62
-                  git fetch origin
-                  git checkout ${{ steps.deploy_mode.outputs.ref }}
-
-                  # track deployment
-                  mkdir -p .deployment/backups
-                  echo "${{ steps.deploy_mode.outputs.ref }}" >> .deployment/current_version
-
-                  docker compose down
-                  docker compose up -d --build
-                  
-                  echo "Deployed ${{ steps.deploy_mode.outputs.ref }} (stable)"
-
-            - name: Deploy via SSH (Main - Iteration)
-              if: steps.deploy_mode.outputs.mode == 'main'
+            - name: Deploy via SSH
               uses: appleboy/ssh-action@v1.2.4
               with:
                 host: ${{ secrets.DEPLOY_HOST }}
@@ -105,12 +72,4 @@ jobs:
                 script: |
                   cd /home/deploy/M62
                   git pull
-
-                  # track deployment
-                  mkdir -p .deployment/backups
-                  COMMIT_SHA=$(git rev-parse --short HEAD)
-                  echo "main-$COMMIT_SHA-$(date +%s)" >> .deployment/current_version
-
                   docker compose up -d --build
-                  
-                  echo "Auto-deployed main branch (iteration)"
