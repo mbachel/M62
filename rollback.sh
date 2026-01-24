@@ -9,8 +9,8 @@ NC='\033[0m' # no color
 
 # configuration
 DEPLOY_DIR='/home/deploy/m62'
-VERSION_FILE='${DEPLOY_DIR}/.deployment/current_version'
-BACKUP_DIR='${DEPLOY_DIR}/.deployment/backups'
+VERSION_FILE="${DEPLOY_DIR}/.deployment/current_version"
+BACKUP_DIR="${DEPLOY_DIR}/.deployment/backups"
 
 # ensure backup directory exists
 mkdir -p "${BACKUP_DIR}"
