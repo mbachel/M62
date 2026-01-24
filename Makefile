@@ -1,7 +1,7 @@
 .PHONY: help build up down logs rollback tag deploy
 
 help:
-    @echo "M62 Deployment Commands"
+	@echo "M62 Deployment Commands"
 	@echo "======================="
 	@echo ""
 	@echo "Development:"
@@ -28,7 +28,7 @@ logs:
 	docker compose logs -f
 
 tag:
-    @if [ -z "$(VERSION)" ]; then \
+	@if [ -z "$(VERSION)" ]; then \
 		echo "Usage: make tag VERSION=v.0.1"; \
 		exit 1; \
 	fi
@@ -38,10 +38,10 @@ tag:
 	@echo "Tag $(VERSION) created and pushed."
 
 deploy:
-    @echo "Deploying from main branch..."
+	@echo "Deploying from main branch..."
 	@echo "Ensure you've pushed to main, then run deploy on the server:"
 	@echo "  ssh deploy@your-server 'cd /home/deploy/M62 && git pull && docker compose up -d --build'"
 
 rollback:
-    @echo "Rolling back to previous deployment..."
+	@echo "Rolling back to previous deployment..."
 	bash rollback.sh
