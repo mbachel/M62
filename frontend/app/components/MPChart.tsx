@@ -220,9 +220,7 @@ export default function MPChart() {
   if (data.length === 0) return <div>Loading charts...</div>;
 
   return (
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-8 justify-items-center items-center"
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-8 justify-items-center items-center">
       {data.map((doc, idx) => (
         <svg
           key={doc._id}
