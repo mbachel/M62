@@ -4,20 +4,20 @@ updates:
     directory: "/frontend"
     schedule:
       interval: "weekly"
-    security-updates-only: true  
     allow:
       - dependency-type: "all"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "pip"
     directory: "/backend"
     schedule:
       interval: "weekly"
-    security-updates-only: true
     allow:
       - dependency-type: "all"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
-    security-updates-only: true
+    open-pull-requests-limit: 0
